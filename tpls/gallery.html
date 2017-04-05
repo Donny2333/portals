@@ -1,0 +1,46 @@
+<div class="gallery">
+    <div class="head">
+        <h2 class="title">{{vm.title}}</h2>
+        <div class="toolbox">排序
+            <select class="form-control" style="display: inline-block;width: 65px;">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+            <div class="btn-group" role="group">
+                <button class="btn btn-default">
+                    <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-default">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="main">
+        <div class="section">
+            <span>资源分类</span>
+            <ul>
+                <li ng-repeat="section in vm.sections">{{section.name}}</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li ng-repeat="item in vm.gallery">
+                    <img ng-src="{{item.img}}">
+                    <h5>{{item.title}}</h5>
+                </li>
+            </ul>
+            <div class="pagination btn-group" role="group">
+                <button type="button" class="btn btn-default">&#60</button>
+                <button type="button" class="btn btn-default">1</button>
+                <button type="button" class="btn btn-default">2</button>
+                <button type="button" class="btn btn-default">3</button>
+                <button type="button" class="btn btn-default">&#62</button>
+            </div>
+        </div>
+    </div>
+
+</div>

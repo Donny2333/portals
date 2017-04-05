@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('"portals.routers', ['ui.router'])
+    angular.module('portals.routers', ['ui.router'])
         .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
             $urlRouterProvider.otherwise('/app/home');
 
@@ -34,6 +34,11 @@
                     url: '/case',
                     templateUrl: 'tpls/case.html',
                     controller: 'CaseController'
+                })
+                .state('app.gallery', {
+                    url: '/gallery',
+                    templateUrl: 'tpls/gallery.html',
+                    controller: 'GalleryController'
                 })
                 .state('app.map', {
                     url: '/map',

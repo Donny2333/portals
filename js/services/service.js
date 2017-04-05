@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('"portals.services', [])
+    angular.module('portals.services', [])
         .factory('uuid', function () {
             var uuid = {};
 

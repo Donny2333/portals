@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('"portals.directives', [])
+    angular.module('portals.directives', [])
         .directive('myChart', function () {
             return {
                 restrict: 'E',

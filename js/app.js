@@ -5,10 +5,10 @@
     'use strict';
 
     angular.module('portals', [
-        '"portals.routers',
-        '"portals.directives',
-        '"portals.services',
-        '"portals.controllers'
+        'portals.routers',
+        'portals.directives',
+        'portals.services',
+        'portals.controllers'
     ]);
 
 }());

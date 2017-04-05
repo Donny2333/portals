@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('"portals.controllers')
+    angular.module('portals.controllers')
         .controller('MapController', function () {
 
         })

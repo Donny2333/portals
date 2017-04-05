@@ -2,10 +2,13 @@ body {
     padding-top: 50px;
 }
 
+/************************ navbar *******************************/
+
 .navbar-white {
     margin-top: -1px;
     border-radius: 0;
     border-bottom: 1px solid #dadada;
+    background-color: white;
 }
 
 .navbar-white .navbar-brand,
@@ -23,4 +26,47 @@ body {
     cursor: pointer;
     color: white;
     background-color: #00abe5;
+}
+
+/************************** gallery ******************************/
+
+.gallery > .head {
+    height: 80px;
+    padding-top: 20px;
+}
+
+.gallery > .head > .title {
+    display: inline-block;
+    margin: 0;
+    font-size: 26px;
+}
+
+.gallery > .head > .toolbox {
+    float: right;
+}
+
+.gallery > .main {
+    display: flex;
+}
+
+.gallery > .main > .section {
+    flex: 1;
+}
+
+.gallery > .main > .content {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery > .main > .content > ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery > .main > .content > ul > li {
+    list-style: none;
+    margin: 0 28px 20px 0;
 }
