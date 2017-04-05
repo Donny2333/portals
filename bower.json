@@ -1,0 +1,13 @@
+{
+  "name": "portals",
+  "description": "HGT portals",
+  "authors": [
+    "Donny"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-ui-router": "ui-router#^0.4.2",
+    "bootstrap": "^3.3.7"
+  }
+}

@@ -1,0 +1,26 @@
+body {
+    padding-top: 50px;
+}
+
+.navbar-white {
+    margin-top: -1px;
+    border-radius: 0;
+    border-bottom: 1px solid #dadada;
+}
+
+.navbar-white .navbar-brand,
+.navbar-white .navbar-nav > li > a {
+    color: black;
+}
+
+.navbar-white .navbar-nav > .active > a,
+.navbar-white .navbar-nav > .active > a:hover {
+    color: white;
+    background-color: #00abe5;
+}
+
+.navbar-white .navbar-nav > li > a:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #00abe5;
+}
