@@ -1,7 +1,7 @@
 /**
  * Created by Donny on 17/3/22.
  */
-(function () {
+(function (angular) {
     'use strict';
 
     angular.module('portals.routers', ['ui.router'])
@@ -57,4 +57,4 @@
                 });
         }]);
 
-}());
+})(angular);

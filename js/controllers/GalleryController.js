@@ -1,7 +1,7 @@
 /**
  * Created by Donny on 17/4/5.
  */
-(function () {
+(function (angular) {
     'use strict';
 
     angular.module('portals.controllers')
@@ -25,80 +25,87 @@
                         id: 4,
                         name: '分类5'
                     }],
+                selected: 0,
+                options: [{
+                    id: 0,
+                    value: ''
+                }],
+                display: 0,
                 gallery: [
                     {
                         id: 0,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map1.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 1,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map2.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 2,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map3.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 3,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map4.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 4,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map5.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 5,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map6.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 6,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map7.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 7,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map8.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 8,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map9.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 9,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map10.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 10,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map11.jpg',
-                        description: ""
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
                     }, {
                         id: 11,
                         title: 'Mid-Century Map',
                         author: 'Web Map',
                         img: '../images/map12.jpg',
-                        description: ""
-                    }]
+                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                    }],
+                expand: false
             };
-        }])
-}());
+        }]);
+})(angular);
