@@ -1,27 +1,32 @@
 <div class="gallery">
     <div class="head">
         <h2 class="title">{{vm.title}}</h2>
-        <div class="toolbox">排序
-            <select class="form-control">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
+        <div class="toolbox">
+            <span>排序依据：</span>
+            <div class="search">
+                <a class="search-box" ng-click="vm.droplist=!vm.droplist" ng-focus="focus()" ng-blur="blur()">最新地图</a>
+                <ul class="droplist" ng-show="vm.droplist">
+                    <li><a>最高评级</a></li>
+                    <li><a>标题</a></li>
+                    <li><a>所有者</a></li>
+                    <li><a>最高访问量</a></li>
+                </ul>
+                <!--<div ng-repeat="option.value for option in vm.options track by option.id"></div>-->
+            </div>
             <div class="btn-group" role="group">
                 <button class="btn btn-default" ng-class="{active: !vm.expand}" ng-click="vm.expand=false">
-                    <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                    <img src="../images/grid.png">
                 </button>
                 <button class="btn btn-default" ng-class="{active: vm.expand}" ng-click="vm.expand=true">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <img src="../images/line.png">
                 </button>
             </div>
         </div>
     </div>
     <div class="main">
         <div class="section">
-            <span>资源分类</span>
-            <ul>
+            <span class="title">资源分类</span>
+            <ul class="category">
                 <li ng-repeat="section in vm.sections">
                     <a>{{section.name}}</a>
                 </li>
@@ -38,12 +43,14 @@
                     </div>
                 </li>
             </ul>
-            <div class="pagination btn-group" role="group">
-                <button type="button" class="btn btn-default">&#60</button>
-                <button type="button" class="btn btn-default active">1</button>
-                <button type="button" class="btn btn-default">2</button>
-                <button type="button" class="btn btn-default">3</button>
-                <button type="button" class="btn btn-default">&#62</button>
+            <div>
+                <button type="button" class="btn btn-default">&#60上一页</button>
+                <div class="pagination btn-group" role="group">
+                    <button type="button" class="btn btn-default active">1</button>
+                    <button type="button" class="btn btn-default">2</button>
+                    <button type="button" class="btn btn-default">3</button>
+                </div>
+                <button type="button" class="btn btn-default">下一页&#62</button>
             </div>
         </div>
     </div>
