@@ -274,28 +274,9 @@ ul, li {
     color: #dedede;
 }
 
-.lightblue {
-    color: #a8c7e5;
-}
-
 .gallery > .main > .content > ul > li.expand > .info > span {
     font-size: 12px;
     color: #bfbfbf;
-}
-
-.gallery > .main > .content > ul > li.expand > button {
-    align-self: flex-end;
-    height: 32px;
-    width: 90px;
-    color: #eef7fb;
-    border: none;
-    outline: none;
-    border-radius: 0;
-    background-color: #1d90e3;
-}
-
-.gallery > .main > .content > ul > li.expand > button:active {
-    background-color: #cc364f;
 }
 
 .gallery > .main > .content > ul > li.grid {
@@ -324,26 +305,26 @@ ul, li {
     background-color: rgba(1, 1, 1, 0.4);
 }
 
-.gallery > .main > .content > ul > li.row {
-    height: 150px;
-    width: 900px;
-    margin: 0 30px 15px 0;
+.gallery > .main > .content > ul > li.list {
+    height: 152px;
+    width: 902px;
+    margin: 0 0 15px 0;
     display: flex;
     justify-content: space-between;
     padding: 20px;
     border: 1px solid #ededed;
 }
 
-.gallery > .main > .content > ul > li.row:first-child {
+.gallery > .main > .content > ul > li.list:first-child {
     margin-top: 20px;
 }
 
-.gallery > .main > .content > ul > li.row > img {
+.gallery > .main > .content > ul > li.list > img {
     height: 110px;
     width: 150px;
 }
 
-.gallery > .main > .content > ul > li.row > .info {
+.gallery > .main > .content > ul > li.list > .info {
     color: black;
     width: 580px;
     display: flex;
@@ -353,23 +334,23 @@ ul, li {
     text-overflow: ellipsis;
 }
 
-.gallery > .main > .content > ul > li.row > .info > h2 {
+.gallery > .main > .content > ul > li.list > .info > h2 {
     font-size: 20px;
     margin: 0;
     color: #333333;
 }
 
-.gallery > .main > .content > ul > li.row > .info p {
+.gallery > .main > .content > ul > li.list > .info p {
     display: inline-block;
     margin: 0;
     color: #6b6b6b;
 }
 
-.gallery > .main > .content > ul > li.row > .info > span {
+.gallery > .main > .content > ul > li.list > .info > span {
     color: #808080;
 }
 
-.gallery > .main > .content > ul > li.row > button {
+.gallery button.btn-more {
     align-self: flex-end;
     height: 32px;
     width: 90px;
@@ -380,6 +361,12 @@ ul, li {
     background-color: #1d90e3;
 }
 
-.gallery > .main > .content > ul > li.row > button:active {
+.gallery button.btn-more:active {
+    border: none;
+    outline: none;
     background-color: #cc364f;
+}
+
+.lightblue {
+    color: #a8c7e5;
 }
