@@ -159,54 +159,54 @@
                     }],
                 toolbox: {
                     droplist: false,
-                    expand: true
+                    expand: false
                 },
                 expand: {
-                    state: false,
                     id: 0,
+                    state: false,
                     open: [true, false, false]
                 }
             };
 
-            $scope.change = function (option) {
-                console.log(option);
-            };
+            // $scope.change = function (option) {
+            //     console.log(option);
+            // };
+            //
+            // $scope.focus = function () {
+            //     $scope.$evalAsync(function () {
+            //         console.log("focus");
+            //     });
+            // };
+            //
+            // $scope.blur = function () {
+            //     $scope.$evalAsync(function ($scope) {
+            //         vm.droplist = false;
+            //         console.log(vm.droplist);
+            //     });
+            //     console.log("blur");
+            // };
 
-            $scope.focus = function () {
-                $scope.$evalAsync(function () {
-                    console.log("focus");
-                });
-            };
-
-            $scope.blur = function () {
-                $scope.$evalAsync(function ($scope) {
-                    $scope.vm.droplist = false;
-                    console.log($scope.vm.droplist);
-                });
-                console.log("blur");
-            };
-
-            $scope.click = function (index) {
+            $scope.hover = function (index) {
                 var show = Math.ceil((index + 1) / 4) - 1;
 
                 // 如果该层描述窗口未打开，则打开
-                if (!$scope.vm.open[show]) {
-                    $scope.vm.open[show] = !$scope.vm.open[show];
+                if (!vm.expand.open[show]) {
+                    vm.expand.open[show] = !vm.expand.open[show];
 
                     // 延迟绑定数据
                     $timeout(function () {
-                        $scope.vm.select.id = index;
+                    vm.expand.id = index;
                     }, 180);
                 } else {
-                    $scope.vm.select.id = index;
+                    vm.expand.id = index;
                 }
 
                 // 关闭其他层描述窗口
-                $scope.vm.open.map(function (item, index) {
+                vm.expand.open.map(function (item, index) {
                     if (index !== show) {
-                        $scope.vm.open[index] = false;
+                        vm.expand.open[index] = false;
                     }
                 });
-            }
+            };
         }]);
 })(angular);

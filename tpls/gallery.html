@@ -37,7 +37,7 @@
         </div>
         <div class="content">
             <ul>
-                <li ng-repeat-start="item in vm.gallery"
+                <li ng-repeat-start="item in vm.gallery" ng-mouseover="hover($index)"
                     ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand}">
                     <img ng-src="{{item.img}}">
                     <div class="info">
@@ -68,14 +68,14 @@
                     <button class="btn btn-primary btn-more">MORE ➝</button>
                 </li>
             </ul>
-            <div>
-                <button type="button" class="btn btn-default">&#60上一页</button>
+            <div class="pagination">
+                <button type="button" class="btn btn-blue"><span style="display:inline-block; transform: rotate(180deg);">▸</span> 上一页 </button>
                 <div class="pagination btn-group" role="group">
-                    <button type="button" class="btn btn-default active">1</button>
-                    <button type="button" class="btn btn-default">2</button>
-                    <button type="button" class="btn btn-default">3</button>
+                    <button type="button" class="btn btn-blue active">1</button>
+                    <button type="button" class="btn btn-blue">2</button>
+                    <button type="button" class="btn btn-blue">3</button>
                 </div>
-                <button type="button" class="btn btn-default">下一页&#62</button>
+                <button type="button" class="btn btn-blue">下一页 ▸</button>
             </div>
         </div>
     </div>

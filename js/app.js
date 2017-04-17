@@ -5,6 +5,7 @@
     'use strict';
 
     angular.module('portals', [
+        'ngAnimate',
         'portals.routers',
         'portals.directives',
         'portals.services',

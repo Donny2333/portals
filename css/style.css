@@ -246,6 +246,13 @@ ul, li {
     height: 150px;
     width: 900px;
     background-color: #373c3e;
+    transition: all linear 0.2s;
+}
+
+.gallery > .main > .content > ul > li.expand.ng-hide {
+    height: 0;
+    padding: 0;
+    opacity: 0;
 }
 
 .gallery > .main > .content > ul > li.expand > img {
@@ -350,6 +357,16 @@ ul, li {
     color: #808080;
 }
 
+.gallery > .main > .content > .pagination {
+    float: right;
+    height: 30px;
+    margin: 0 30px;
+}
+
+.gallery > .main > .content > .pagination .pagination {
+    margin: 0;
+}
+
 .gallery button.btn-more {
     align-self: flex-end;
     height: 32px;
@@ -365,6 +382,26 @@ ul, li {
     border: none;
     outline: none;
     background-color: #cc364f;
+}
+
+.btn-blue {
+    color: #333;
+    padding: 0 8px;
+    border-radius: 0;
+    background-color: #fff;
+    outline: none;
+    border-color: #ccc;
+    margin: 0;
+    height: 30px;
+    min-width: 30px;
+    line-height: 30px;
+}
+
+.btn-blue.active,
+.btn-blue:active {
+    color: white;
+    outline: none;
+    background-color: #1d90e3;
 }
 
 .lightblue {
