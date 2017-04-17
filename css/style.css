@@ -1,6 +1,6 @@
 body {
     padding-top: 50px;
-    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+    font-family: "Microsoft YaHei", 微软雅黑, Arial;
     background-color: #ededef;
 }
 
@@ -92,6 +92,7 @@ ul, li {
     line-height: 30px;
     margin-right: 20px;
     user-select: none;
+    z-index: 1;
 }
 
 .gallery > .head > .toolbox > .search a {
@@ -223,15 +224,78 @@ ul, li {
 }
 
 .gallery > .main > .content > ul {
+    height: 680px;
     width: 100%;
     display: flex;
+    align-content: flex-start;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .gallery > .main > .content > ul > li {
+    margin: 20px 0 0;
     position: relative;
-    margin: 10px;
     display: flex;
+}
+
+.gallery > .main > .content > ul > li.expand {
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 150px;
+    width: 900px;
+    background-color: #373c3e;
+}
+
+.gallery > .main > .content > ul > li.expand > img {
+    height: 110px;
+    width: 150px;
+}
+
+.gallery > .main > .content > ul > li.expand > .info {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 580px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gallery > .main > .content > ul > li.expand > .info > h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.gallery > .main > .content > ul > li.expand > .info p {
+    display: inline-block;
+    margin: 0;
+    color: #dedede;
+}
+
+.lightblue {
+    color: #a8c7e5;
+}
+
+.gallery > .main > .content > ul > li.expand > .info > span {
+    font-size: 12px;
+    color: #bfbfbf;
+}
+
+.gallery > .main > .content > ul > li.expand > button {
+    align-self: flex-end;
+    height: 32px;
+    width: 90px;
+    color: #eef7fb;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: #1d90e3;
+}
+
+.gallery > .main > .content > ul > li.expand > button:active {
+    background-color: #cc364f;
 }
 
 .gallery > .main > .content > ul > li.grid {
@@ -261,28 +325,61 @@ ul, li {
 }
 
 .gallery > .main > .content > ul > li.row {
-    margin-right: 0;
-    flex-direction: row;
-    width: 100%;
+    height: 150px;
+    width: 900px;
+    margin: 0 30px 15px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ededed;
+}
+
+.gallery > .main > .content > ul > li.row:first-child {
+    margin-top: 20px;
+}
+
+.gallery > .main > .content > ul > li.row > img {
+    height: 110px;
+    width: 150px;
 }
 
 .gallery > .main > .content > ul > li.row > .info {
-    width: 100%;
-    margin-left: 10px;
+    color: black;
+    width: 580px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.gallery > .main > .content > ul > li.row h2 {
+.gallery > .main > .content > ul > li.row > .info > h2 {
     font-size: 20px;
     margin: 0;
+    color: #333333;
 }
 
-.gallery > .main > .content > ul > li.row p {
+.gallery > .main > .content > ul > li.row > .info p {
+    display: inline-block;
     margin: 0;
+    color: #6b6b6b;
 }
 
-.gallery > .main > .content > ul > li.row span {
-    min-height: 60px;
+.gallery > .main > .content > ul > li.row > .info > span {
+    color: #808080;
+}
+
+.gallery > .main > .content > ul > li.row > button {
+    align-self: flex-end;
+    height: 32px;
+    width: 90px;
+    color: #eef7fb;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: #1d90e3;
+}
+
+.gallery > .main > .content > ul > li.row > button:active {
+    background-color: #cc364f;
 }

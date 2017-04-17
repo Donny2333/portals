@@ -4,8 +4,9 @@
         <div class="toolbox">
             <span>排序依据：</span>
             <div class="search">
-                <a class="search-box" ng-click="vm.droplist=!vm.droplist" ng-focus="focus()" ng-blur="blur()">最新地图</a>
-                <ul class="droplist" ng-show="vm.droplist">
+                <a class="search-box" ng-click="vm.toolbox.droplist=!vm.toolbox.droplist" ng-focus="focus()"
+                   ng-blur="blur()">最新地图</a>
+                <ul class="droplist" ng-show="vm.toolbox.droplist">
                     <li><a>最高评级</a></li>
                     <li><a>标题</a></li>
                     <li><a>所有者</a></li>
@@ -14,10 +15,12 @@
                 <!--<div ng-repeat="option.value for option in vm.options track by option.id"></div>-->
             </div>
             <div class="btn-group" role="group">
-                <button class="btn btn-default" ng-class="{active: !vm.expand}" ng-click="vm.expand=false">
+                <button class="btn btn-default" ng-class="{active: !vm.toolbox.expand}"
+                        ng-click="vm.toolbox.expand=false">
                     <img src="../images/grid.png">
                 </button>
-                <button class="btn btn-default" ng-class="{active: vm.expand}" ng-click="vm.expand=true">
+                <button class="btn btn-default" ng-class="{active: vm.toolbox.expand}"
+                        ng-click="vm.toolbox.expand=true">
                     <img src="../images/line.png">
                 </button>
             </div>
@@ -34,13 +37,35 @@
         </div>
         <div class="content">
             <ul>
-                <li ng-repeat="item in vm.gallery" ng-class="{grid: !vm.expand, row: vm.expand}">
+                <li ng-repeat-start="item in vm.gallery"
+                    ng-class="{grid: !vm.toolbox.expand, row: vm.toolbox.expand}">
                     <img ng-src="{{item.img}}">
                     <div class="info">
                         <h2>{{item.title}}</h2>
-                        <p ng-if="vm.expand">{{item.author}}</p>
-                        <span ng-if="vm.expand">{{item.description}}</span>
+                        <div ng-if="vm.toolbox.expand">
+                            <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
+                            <p style="margin-left: 30px">
+                                版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
+                            </p>
+                        </div>
+                        <span ng-if="vm.toolbox.expand">{{item.description}}</span>
                     </div>
+                    <button class="btn btn-primary btn-more">MORE ➝</button>
+                </li>
+                <li class="expand" ng-if="!vm.toolbox.expand&&$index % 4 == 3" ng-show="vm.expand.open[($index+1)/4-1]"
+                    ng-repeat-end>
+                    <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150">
+                    <div class="info">
+                        <h2>{{vm.gallery[vm.expand.id].title}}</h2>
+                        <div>
+                            <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
+                            <p style="margin-left: 30px">
+                                版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
+                            </p>
+                        </div>
+                        <span>{{vm.gallery[vm.expand.id].description}}</span>
+                    </div>
+                    <button class="btn btn-primary btn-more">MORE ➝</button>
                 </li>
             </ul>
             <div>

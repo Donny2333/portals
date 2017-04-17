@@ -64,77 +64,108 @@
                         id: 0,
                         title: '四维导航图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map1.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 1,
                         title: '四维导航图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map2.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 2,
                         title: '四维导航图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map3.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 3,
                         title: '四维导航图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map4.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 4,
                         title: '北京市迁徙图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map5.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 5,
                         title: '北京市迁徙图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map6.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 6,
                         title: '北京市迁徙图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map7.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 7,
                         title: '北京市迁徙图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map8.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 8,
                         title: '公交线路图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map9.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 9,
                         title: '公交线路图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map10.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 10,
                         title: '公交线路图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map11.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }, {
                         id: 11,
                         title: '公交线路图',
                         author: 'Web Map',
+                        update: "2017-5-20",
+                        version: "1.0.0",
                         img: '../images/map12.jpg',
-                        description: "this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing.this is this is this some thing."
+                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
                     }],
-                droplist: false,
-                expand: false
+                toolbox: {
+                    droplist: false,
+                    expand: true
+                },
+                expand: {
+                    state: false,
+                    id: 0,
+                    open: [true, false, false]
+                }
             };
 
             $scope.change = function (option) {
@@ -154,5 +185,28 @@
                 });
                 console.log("blur");
             };
+
+            $scope.click = function (index) {
+                var show = Math.ceil((index + 1) / 4) - 1;
+
+                // 如果该层描述窗口未打开，则打开
+                if (!$scope.vm.open[show]) {
+                    $scope.vm.open[show] = !$scope.vm.open[show];
+
+                    // 延迟绑定数据
+                    $timeout(function () {
+                        $scope.vm.select.id = index;
+                    }, 180);
+                } else {
+                    $scope.vm.select.id = index;
+                }
+
+                // 关闭其他层描述窗口
+                $scope.vm.open.map(function (item, index) {
+                    if (index !== show) {
+                        $scope.vm.open[index] = false;
+                    }
+                });
+            }
         }]);
 })(angular);
