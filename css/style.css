@@ -14,6 +14,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 ul, li {
+    margin: 0;
     padding: 0;
     list-style: none;
 }
@@ -365,7 +366,7 @@ ul, li {
 .gallery > .main > .content > .pagination {
     float: right;
     height: 30px;
-    margin: 0 30px;
+    margin: 10px 30px;
 }
 
 .gallery > .main > .content > .pagination .pagination {
@@ -437,12 +438,6 @@ ul, li {
     color: white !important;
     background-color: #1d90e3;
 }
-
-/*.btn-blue.btn-outline:visited,*/
-/*.btn-blue.btn-outline:focus {*/
-/*color: white;*/
-/*background-color: #1d90e3;*/
-/*}*/
 
 .btn-blue.btn-outline:hover {
     color: #1d90e3;

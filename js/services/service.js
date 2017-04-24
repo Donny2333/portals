@@ -22,4 +22,22 @@
             return uuid;
         })
 
+        .factory("Gallery", ["$q", "$http", function ($q, $http) {
+            var url = "/json/gallery.json";
+
+            return {
+                get: function () {
+                    var deferred = $q.defer();
+
+                    $http.get(url).then(function (response) {
+                        deferred.resolve(response);
+                    }, function (err) {
+                        deferred.reject(err);
+                    });
+
+                    return deferred.promise;
+                }
+            }
+        }])
+
 })(angular);

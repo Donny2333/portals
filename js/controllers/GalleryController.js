@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('portals.controllers')
-        .controller('GalleryController', ['$scope', '$timeout', function ($scope, $timeout) {
+        .controller('GalleryController', ['$scope', '$timeout', 'Gallery', function ($scope, $timeout, Gallery) {
             var vm = $scope.vm = {
                 title: 'Living Atlas 中的专题地图',
                 sections: [
@@ -46,117 +46,34 @@
                 ],
                 selected: {
                     id: 0,
-                    value: '最新地图'
+                    name: '最新地图',
+                    value: 'update'
                 },
-                options: [{
-                    id: 0,
-                    value: '最新地图'
-                }, {
-                    id: 1,
-                    value: 'Title'
-                }, {
-                    id: 2,
-                    value: 'Visited'
-                }],
-                display: 0,
-                gallery: [
+                options: [
                     {
                         id: 0,
-                        title: '四维导航图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map1.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
+                        name: '最新地图',
+                        value: 'update'
                     }, {
                         id: 1,
-                        title: '四维导航图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map2.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
+                        name: '最高评级',
+                        value: 'level'
                     }, {
                         id: 2,
-                        title: '四维导航图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map3.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
+                        name: '标题',
+                        value: 'title'
                     }, {
                         id: 3,
-                        title: '四维导航图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map4.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
+                        name: '所有者',
+                        value: 'author'
                     }, {
                         id: 4,
-                        title: '北京市迁徙图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map5.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 5,
-                        title: '北京市迁徙图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map6.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 6,
-                        title: '北京市迁徙图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map7.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 7,
-                        title: '北京市迁徙图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map8.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 8,
-                        title: '公交线路图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map9.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 9,
-                        title: '公交线路图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map10.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 10,
-                        title: '公交线路图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map11.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }, {
-                        id: 11,
-                        title: '公交线路图',
-                        author: 'Web Map',
-                        update: "2017-5-20",
-                        version: "1.0.0",
-                        img: '../images/map12.jpg',
-                        description: "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）"
-                    }],
+                        name: '最高访问量',
+                        value: 'visited'
+                    }
+                ],
+                display: 0,
+                gallery: [],
                 toolbox: {
                     droplist: false,
                     expand: false
@@ -168,10 +85,17 @@
                 }
             };
 
-            // $scope.change = function (option) {
-            //     console.log(option);
-            // };
-            //
+            Gallery.get().then(function (res) {
+                vm.gallery = res.data;
+            });
+
+            $scope.change = function (id) {
+                vm.selected = vm.options[id];
+                vm.toolbox.droplist = false;
+
+                // Todo: filter the vm.gallery
+            };
+
             // $scope.focus = function () {
             //     $scope.$evalAsync(function () {
             //         console.log("focus");
@@ -180,10 +104,9 @@
             //
             // $scope.blur = function () {
             //     $scope.$evalAsync(function ($scope) {
-            //         vm.droplist = false;
-            //         console.log(vm.droplist);
+            //         $scope.vm.droplist = false;
+            //         console.log($scope.vm.droplist);
             //     });
-            //     console.log("blur");
             // };
 
             $scope.hover = function (index) {
@@ -195,7 +118,7 @@
 
                     // 延迟绑定数据
                     $timeout(function () {
-                    vm.expand.id = index;
+                        vm.expand.id = index;
                     }, 180);
                 } else {
                     vm.expand.id = index;

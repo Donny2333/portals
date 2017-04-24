@@ -5,14 +5,12 @@
             <span>排序依据：</span>
             <div class="search">
                 <a class="search-box" ng-click="vm.toolbox.droplist=!vm.toolbox.droplist" ng-focus="focus()"
-                   ng-blur="blur()">最新地图</a>
+                   ng-blur="blur()">{{vm.selected.name}}</a>
                 <ul class="droplist" ng-show="vm.toolbox.droplist">
-                    <li><a>最高评级</a></li>
-                    <li><a>标题</a></li>
-                    <li><a>所有者</a></li>
-                    <li><a>最高访问量</a></li>
+                    <li ng-repeat="option in vm.options" ng-click="change($index)">
+                        <a>{{option.name}}</a>
+                    </li>
                 </ul>
-                <!--<div ng-repeat="option.value for option in vm.options track by option.id"></div>-->
             </div>
             <div class="btn-group" role="group">
                 <button class="btn btn-default" ng-class="{active: !vm.toolbox.expand}"
@@ -37,7 +35,7 @@
         </div>
         <div class="content">
             <ul>
-                <li ng-repeat-start="item in vm.gallery" ng-mouseover="hover($index)"
+                <li ng-repeat-start="item in vm.gallery | orderBy: vm.selected.value" ng-mouseover="hover($index)"
                     ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand}">
                     <img ng-src="{{item.img}}">
                     <div class="info">
@@ -74,7 +72,7 @@
                 </button>
                 <div class="pagination btn-group" role="group">
                     <button type="button" class="btn btn-outline btn-blue active">1</button>
-                    <button type="button" class="btn btn-outline btn-blue">2</button>
+                    <button type="button" class="btn btn-outline btn-blue ">2</button>
                     <button type="button" class="btn btn-outline btn-blue">3</button>
                 </div>
                 <button type="button" class="btn btn-outline btn-blue">▸</button>
