@@ -28,7 +28,8 @@
         <div class="section">
             <span class="title">资源分类</span>
             <ul class="category">
-                <li ng-repeat="section in vm.sections">
+                <li ng-class="{active: $index===vm.classificate}" ng-click="classify($index)"
+                    ng-repeat="section in vm.sections">
                     <a>{{section.name}}</a>
                 </li>
             </ul>

@@ -211,12 +211,15 @@ ul, li {
     color: black;
 }
 
+.gallery > .main > .section > .category > li.active,
 .gallery > .main > .section > .category > li:hover,
+.gallery > .main > .section > .category > li.active > a,
 .gallery > .main > .section > .category > li:hover > a {
     background-color: #cc364f;
     color: white;
 }
 
+.gallery > .main > .section > .category > li.active:before,
 .gallery > .main > .section > .category > li:hover:before {
     position: absolute;
     top: -1px;

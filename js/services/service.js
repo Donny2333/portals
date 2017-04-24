@@ -22,20 +22,38 @@
             return uuid;
         })
 
-        .factory("Gallery", ["$q", "$http", function ($q, $http) {
-            var url = "/json/gallery.json";
-
+        .factory('Http', ["$q", "$http", function ($q, $http) {
             return {
-                get: function () {
+                get: function (url) {
                     var deferred = $q.defer();
 
-                    $http.get(url).then(function (response) {
-                        deferred.resolve(response);
+                    $http.get(url).then(function (res) {
+                        deferred.resolve(res);
                     }, function (err) {
                         deferred.reject(err);
                     });
 
                     return deferred.promise;
+                }
+            }
+        }])
+
+        .factory("Sections", ["Http", function (Http) {
+            var url = "/json/sections.json";
+
+            return {
+                get: function () {
+                    return Http.get(url);
+                }
+            }
+        }])
+
+        .factory("Gallery", ["Http", function (Http) {
+            var url = "/json/gallery.json";
+
+            return {
+                get: function () {
+                    return Http.get(url);
                 }
             }
         }])
