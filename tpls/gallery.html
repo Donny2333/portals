@@ -36,7 +36,7 @@
         <div class="content">
             <ul>
                 <li ng-repeat-start="item in vm.gallery | orderBy: vm.selected.value" ng-mouseover="hover($index)"
-                    ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand}">
+                    ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand, hover: $index===vm.expand.id}">
                     <img ng-src="{{item.img}}">
                     <div class="info">
                         <h2>{{item.title}}</h2>

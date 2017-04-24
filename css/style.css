@@ -246,13 +246,14 @@ ul, li {
 
 .gallery > .main > .content > ul > li.expand {
     margin: 20px 0 0;
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 20px;
     height: 150px;
     width: 900px;
     background-color: #373c3e;
-    transition: all linear 0.2s;
+    /*transition: all linear 0.2s;*/
 }
 
 .gallery > .main > .content > ul > li.expand.ng-hide {
@@ -297,8 +298,22 @@ ul, li {
     height: 140px;
     width: 210px;
     max-height: 180px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     flex-direction: column;
+}
+
+.gallery > .main > .content > ul > li.grid.hover:after,
+.gallery > .main > .content > ul > li.grid:hover:after {
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    margin-left: -5px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #373c3e;
 }
 
 .gallery > .main > .content > ul > li.grid h2 {

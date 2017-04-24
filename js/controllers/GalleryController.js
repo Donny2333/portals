@@ -111,6 +111,7 @@
 
             $scope.hover = function (index) {
                 var show = Math.ceil((index + 1) / 4) - 1;
+                var delay = 0;
 
                 // 如果该层描述窗口未打开，则打开
                 if (!vm.expand.open[show]) {
@@ -119,7 +120,7 @@
                     // 延迟绑定数据
                     $timeout(function () {
                         vm.expand.id = index;
-                    }, 180);
+                    }, delay);
                 } else {
                     vm.expand.id = index;
                 }
