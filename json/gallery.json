@@ -2,7 +2,7 @@
   {
     "id": 0,
     "title": "四维导航图",
-    "author": "Web Map",
+    "author": "OpenLayers",
     "update": "2017-4-20",
     "version": "1.0.0",
     "visited": 200,
@@ -13,7 +13,7 @@
   {
     "id": 1,
     "title": "全球降雨量分布图",
-    "author": "Web Map",
+    "author": "ArcGIS",
     "update": "2017-4-21",
     "version": "1.0.0",
     "visited": 120,
@@ -24,7 +24,7 @@
   {
     "id": 2,
     "title": "北京著名景点分布图",
-    "author": "Web Map",
+    "author": "HGT",
     "update": "2017-5-20",
     "version": "1.0.0",
     "visited": 110,
@@ -35,7 +35,7 @@
   {
     "id": 3,
     "title": "林业资源分布图",
-    "author": "Web Map",
+    "author": "China",
     "update": "2017-5-10",
     "version": "1.0.0",
     "visited": 150,
@@ -46,7 +46,7 @@
   {
     "id": 4,
     "title": "农民耕地资源分布图",
-    "author": "Web Map",
+    "author": "Wuhan",
     "update": "2017-4-30",
     "version": "1.0.0",
     "visited": 300,
@@ -57,7 +57,7 @@
   {
     "id": 5,
     "title": "煤矿资源分布图",
-    "author": "Web Map",
+    "author": "Beijing",
     "update": "2017-5-12",
     "version": "1.0.0",
     "visited": 150,
@@ -68,7 +68,7 @@
   {
     "id": 6,
     "title": "北京市公交线路图",
-    "author": "Web Map",
+    "author": "Shanghai",
     "update": "2017-4-15",
     "version": "1.0.0",
     "visited": 320,
@@ -79,7 +79,7 @@
   {
     "id": 7,
     "title": "亚洲人口迁徙图",
-    "author": "Web Map",
+    "author": "USA",
     "update": "2017-4-20",
     "version": "1.0.0",
     "visited": 310,
@@ -90,7 +90,7 @@
   {
     "id": 8,
     "title": "国内省市GDP分布图",
-    "author": "Web Map",
+    "author": "UN",
     "update": "2017-4-30",
     "version": "1.0.0",
     "visited": 380,
@@ -101,7 +101,7 @@
   {
     "id": 9,
     "title": "山区平困户分布图",
-    "author": "Web Map",
+    "author": "Australia",
     "update": "2017-5-21",
     "version": "1.0.0",
     "visited": 250,
@@ -112,7 +112,7 @@
   {
     "id": 10,
     "title": "全球活火山口分布图",
-    "author": "Web Map",
+    "author": "Peek",
     "update": "2017-5-12",
     "version": "1.0.0",
     "visited": 100,
@@ -123,10 +123,11 @@
   {
     "id": 11,
     "title": "国际航班线路图",
-    "author": "Web Map",
+    "author": "Jack",
     "update": "2017-5-15",
     "version": "1.0.0",
     "visited": 220,
+    "level": 3,
     "img": "../images/map12.jpg",
     "description": "地理信息系统有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）..."
   }

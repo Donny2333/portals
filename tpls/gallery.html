@@ -1,82 +1,127 @@
-<div class="gallery">
-    <div class="head">
-        <h2 class="title">{{vm.title}}</h2>
-        <div class="toolbox">
-            <span>排序依据：</span>
-            <div class="search">
-                <a class="search-box" ng-click="vm.toolbox.droplist=!vm.toolbox.droplist" ng-focus="focus()"
-                   ng-blur="blur()">{{vm.selected.name}}</a>
-                <ul class="droplist" ng-show="vm.toolbox.droplist">
-                    <li ng-repeat="option in vm.options" ng-click="change($index)">
-                        <a>{{option.name}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="btn-group" role="group">
-                <button class="btn btn-default" ng-class="{active: !vm.toolbox.expand}"
-                        ng-click="vm.toolbox.expand=false">
-                    <img src="../images/grid.png">
-                </button>
-                <button class="btn btn-default" ng-class="{active: vm.toolbox.expand}"
-                        ng-click="vm.toolbox.expand=true">
-                    <img src="../images/line.png">
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="main">
-        <div class="section">
-            <span class="title">资源分类</span>
-            <ul class="category">
-                <li ng-class="{active: $index===vm.classificate}" ng-click="classify($index)"
-                    ng-repeat="section in vm.sections">
-                    <a>{{section.name}}</a>
-                </li>
-            </ul>
-        </div>
-        <div class="content">
-            <ul>
-                <li ng-repeat-start="item in vm.gallery | orderBy: vm.selected.value" ng-mouseover="hover($index)"
-                    ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand, hover: $index===vm.expand.id}">
-                    <img ng-src="{{item.img}}">
-                    <div class="info">
-                        <h2>{{item.title}}</h2>
-                        <div ng-if="vm.toolbox.expand">
-                            <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
-                            <p style="margin-left: 30px">
-                                版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
-                            </p>
+<div class="flip-container" ng-class="{flip: vm.flipper}">
+    <div class="flipper">
+        <div class="front" ng-class="{top: !vm.flipper, bottom: vm.flipper}">
+            <div class="gallery">
+                <div class="head">
+                    <h2 class="title">{{vm.title}}</h2>
+                    <div class="toolbox">
+                        <span>排序依据：</span>
+                        <div class="search">
+                            <a class="search-box" ng-click="vm.toolbox.droplist=!vm.toolbox.droplist" ng-focus="focus()"
+                               ng-blur="blur()">{{vm.selected.name}}</a>
+                            <ul class="droplist" ng-show="vm.toolbox.droplist">
+                                <li ng-repeat="option in vm.options" ng-click="change($index)">
+                                    <a>{{option.name}}</a>
+                                </li>
+                            </ul>
                         </div>
-                        <span ng-if="vm.toolbox.expand">{{item.description}}</span>
-                    </div>
-                    <button ng-if="vm.toolbox.expand" class="btn btn-primary btn-more">MORE ➝</button>
-                </li>
-                <li class="expand" ng-if="!vm.toolbox.expand&&$index % 4 == 3" ng-show="vm.expand.open[($index+1)/4-1]"
-                    ng-repeat-end>
-                    <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150">
-                    <div class="info">
-                        <h2>{{vm.gallery[vm.expand.id].title}}</h2>
-                        <div>
-                            <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
-                            <p style="margin-left: 30px">
-                                版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
-                            </p>
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-default" ng-class="{active: !vm.toolbox.expand}"
+                                    ng-click="vm.toolbox.expand=false">
+                                <img src="../images/grid.png">
+                            </button>
+                            <button class="btn btn-default" ng-class="{active: vm.toolbox.expand}"
+                                    ng-click="vm.toolbox.expand=true">
+                                <img src="../images/line.png">
+                            </button>
                         </div>
-                        <span>{{vm.gallery[vm.expand.id].description}}</span>
                     </div>
-                    <button class="btn btn-primary btn-more">MORE ➝</button>
-                </li>
-            </ul>
-            <div class="pagination">
-                <button type="button" class="btn btn-outline btn-blue">
-                    <span style="display:inline-block; transform: rotate(180deg);">▸</span>
-                </button>
-                <div class="pagination btn-group" role="group">
-                    <button type="button" class="btn btn-outline btn-blue active">1</button>
-                    <button type="button" class="btn btn-outline btn-blue ">2</button>
-                    <button type="button" class="btn btn-outline btn-blue">3</button>
                 </div>
-                <button type="button" class="btn btn-outline btn-blue">▸</button>
+                <div class="main">
+                    <div class="section">
+                        <span class="title">资源分类</span>
+                        <ul class="category">
+                            <li ng-class="{active: $index===vm.classificate}" ng-click="classify($index)"
+                                ng-repeat="section in vm.sections">
+                                <a>{{section.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li ng-repeat-start="item in vm.gallery"
+                                ng-mouseover="hover($index)"
+                                ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand, hover: $index===vm.expand.id}">
+                                <img ng-src="{{item.img}}">
+                                <div class="info">
+                                    <h2>{{item.title}}</h2>
+                                    <div ng-if="vm.toolbox.expand">
+                                        <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
+                                        <p style="margin-left: 30px">
+                                            版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
+                                        </p>
+                                    </div>
+                                    <span ng-if="vm.toolbox.expand">{{item.description}}</span>
+                                </div>
+                                <button ng-if="vm.toolbox.expand" class="btn btn-primary btn-more"
+                                        ng-click="goMore($index)">MORE ➝
+                                </button>
+                            </li>
+                            <li class="expand" ng-if="!vm.toolbox.expand&&$index % 4 == 3"
+                                ng-show="vm.expand.open[($index+1)/4-1]"
+                                ng-repeat-end>
+                                <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150">
+                                <div class="info">
+                                    <h2>{{vm.gallery[vm.expand.id].title}}</h2>
+                                    <div>
+                                        <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
+                                        <p style="margin-left: 30px">
+                                            版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
+                                        </p>
+                                    </div>
+                                    <span>{{vm.gallery[vm.expand.id].description}}</span>
+                                </div>
+                                <button class="btn btn-primary btn-more" ng-click="goMore(vm.expand.id)">MORE ➝</button>
+                            </li>
+                        </ul>
+                        <div class="pagination">
+                            <button type="button" class="btn btn-outline btn-blue">
+                                <span style="display:inline-block; transform: rotate(180deg);">▸</span>
+                            </button>
+                            <div class="pagination btn-group" role="group">
+                                <button type="button" class="btn btn-outline btn-blue active">1</button>
+                                <button type="button" class="btn btn-outline btn-blue ">2</button>
+                                <button type="button" class="btn btn-outline btn-blue">3</button>
+                            </div>
+                            <button type="button" class="btn btn-outline btn-blue">▸</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="back" ng-class="{top: vm.flipper, bottom: !vm.flipper}">
+            <div class="map">
+                <div class="head">
+                    <img ng-src="{{vm.data.img}}" height="116">
+                    <div class="info" style="display: flex;flex-direction: column;justify-content: space-between">
+                        <h2>{{vm.data.title}}</h2>
+                        <table cellpadding="200">
+                            <tr>
+                                <td style="padding-bottom: 10px">所有者：<span
+                                        style="color: #73b3e0">{{vm.data.author}}</span></td>
+                                <td style="padding:0 0 10px 20px">版本号：{{vm.data.version}}</td>
+                            </tr>
+                            <tr>
+                                <td>创建日期：{{vm.data.create}}</td>
+                                <td style="padding-left: 20px">上次修改日期：{{vm.data.update}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="method">
+                        <button class="btn btn-outline full-btn btn-blue">查看</button>
+                        <button class="btn btn-outline full-btn btn-blue">共享</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <div ng-repeat="segment in vm.segments" class="segment">
+                        <div class="title">
+                            <h2>{{segment.title}}</h2>
+                            <hr>
+                        </div>
+                        <p class="content">{{segment.content}}</p>
+                    </div>
+                    <button class="btn btn-primary btn-back" ng-click="vm.flipper=false">返回</button>
+                </div>
             </div>
         </div>
     </div>

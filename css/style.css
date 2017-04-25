@@ -1,16 +1,22 @@
+html {
+    font-size: 62.5%;
+}
+
 body {
     padding-top: 50px;
     font-family: "Microsoft YaHei", 微软雅黑, Arial;
     background-color: #ededef;
 }
 
-a {
+a, button {
     cursor: pointer;
+    /*font-weight: lighter !important;*/
 }
 
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     padding: 0;
+    /*font-weight: lighter !important;*/
 }
 
 ul, li {
@@ -65,7 +71,6 @@ ul, li {
     height: 72px;
     line-height: 72px;
     vertical-align: middle;
-    background-image: -moz-linear-gradient(-180deg, rgb(29, 144, 227) 0%, rgb(204, 54, 79) 100%);
     background-image: -webkit-linear-gradient(-180deg, rgb(29, 144, 227) 0%, rgb(204, 54, 79) 100%);
     background-image: -ms-linear-gradient(-180deg, rgb(29, 144, 227) 0%, rgb(204, 54, 79) 100%);
     color: white;
@@ -77,14 +82,18 @@ ul, li {
     padding-left: 270px;
     display: inline-block;
     margin: 0;
-    font-size: 22px;
+    font-size: 2.2rem;
 }
 
 .gallery > .head > .toolbox {
-    font-size: 14px;
+    font-size: 1.4rem;
     float: right;
     padding-right: 22px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -97,6 +106,9 @@ ul, li {
     height: 30px;
     line-height: 30px;
     margin-right: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     z-index: 1;
 }
@@ -109,7 +121,7 @@ ul, li {
 }
 
 .gallery > .head > .toolbox > .search > .droplist {
-    font-size: 12px;
+    font-size: 1.2rem;
     padding-top: 5px;
     color: black;
     background-color: white;
@@ -184,9 +196,9 @@ ul, li {
     line-height: 90px;
     vertical-align: middle;
     text-align: center;
-    font-size: 32px;
+    font-size: 3.2rem;
+    font-weight: lighter;
     border-bottom: 1px solid #dedede;
-    background: -moz-linear-gradient(-8deg, #cc364f, #1d90e3);
     background: -webkit-linear-gradient(-8deg, #cc364f, #1d90e3);
     background: -o-linear-gradient(-8deg, #cc364f, #1d90e3);
     -webkit-background-clip: text;
@@ -235,22 +247,31 @@ ul, li {
 .gallery > .main > .content > ul {
     height: 680px;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-line-pack: start;
     align-content: flex-start;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     overflow: hidden;
 }
 
 .gallery > .main > .content > ul > li {
     margin: 20px 0 0;
-    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 .gallery > .main > .content > ul > li.expand {
     margin: 20px 0 0;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 20px;
     height: 150px;
@@ -272,8 +293,15 @@ ul, li {
 
 .gallery > .main > .content > ul > li.expand > .info {
     color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     width: 580px;
     overflow: hidden;
@@ -282,7 +310,7 @@ ul, li {
 
 .gallery > .main > .content > ul > li.expand > .info > h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 2.2rem;
 }
 
 .gallery > .main > .content > ul > li.expand > .info p {
@@ -292,16 +320,20 @@ ul, li {
 }
 
 .gallery > .main > .content > ul > li.expand > .info > span {
-    font-size: 12px;
+    font-size: 1.2rem;
     color: #bfbfbf;
 }
 
 .gallery > .main > .content > ul > li.grid {
+    position: relative;
     margin: 20px 20px 0 0;
     height: 140px;
     width: 210px;
     max-height: 180px;
     /*overflow: hidden;*/
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
@@ -320,7 +352,7 @@ ul, li {
 }
 
 .gallery > .main > .content > ul > li.grid h2 {
-    font-size: 16px;
+    font-size: 1.6rem;
     margin: 0;
     line-height: 150px;
     text-align: center;
@@ -329,6 +361,8 @@ ul, li {
 
 .gallery > .main > .content > ul > li.grid > .info {
     position: absolute;
+    top: 0;
+    left: 0;
     display: inline-block;
     height: 100%;
     width: 100%;
@@ -340,7 +374,11 @@ ul, li {
     height: 152px;
     width: 902px;
     margin: 0 0 15px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 20px;
     border: 1px solid #ededed;
@@ -358,15 +396,22 @@ ul, li {
 .gallery > .main > .content > ul > li.list > .info {
     color: black;
     width: 580px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .gallery > .main > .content > ul > li.list > .info > h2 {
-    font-size: 20px;
+    font-size: 2rem;
     margin: 0;
     color: #333333;
 }
@@ -392,6 +437,7 @@ ul, li {
 }
 
 .gallery button.btn-more {
+    -ms-flex-item-align: end;
     align-self: flex-end;
     height: 32px;
     width: 90px;
@@ -403,6 +449,25 @@ ul, li {
 }
 
 .gallery button.btn-more:active {
+    border: none;
+    outline: none;
+    background-color: #cc364f;
+}
+
+.map button.btn-back {
+    display: inline-block;
+    margin-left: 10px;
+    height: 32px;
+    width: 90px;
+    color: white;
+    font-size: 1.4rem;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: #1d90e3;
+}
+
+.map button.btn-back:active {
     border: none;
     outline: none;
     background-color: #cc364f;
@@ -465,6 +530,69 @@ ul, li {
     color: #a8c7e5;
 }
 
+/* entire container, keeps perspective */
+
+.flip-container {
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+/* flip the pane when hovered */
+.flip-container.flip .flipper {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: 100%;
+    height: 850px;
+}
+
+/* flip speed goes here */
+
+.flipper {
+    -webkit-transition: 0.6s;
+    transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 100 !important;
+}
+
+/* hide back of pane during swap */
+
+.front,
+.back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+
+.front {
+    z-index: 10;
+}
+
+/* back, initially hidden pane */
+
+.back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.flip-container .top {
+    z-index: 10 !important;
+}
+
+.flip-container .bottom {
+    z-index: 9 !important;
+}
+
 /************************** map ******************************/
 .map {
     position: relative;
@@ -479,7 +607,11 @@ ul, li {
     height: 180px;
     /*line-height: 180px;*/
     vertical-align: middle;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
@@ -488,12 +620,12 @@ ul, li {
 }
 
 .map > .head > .info > h2 {
-    font-size: 28px;
+    font-size: 2.8rem;
     color: #333333;
 }
 
 .map > .head > .info tr td {
-    font-size: 14px;
+    font-size: 1.4rem;;
     color: #616161;
 }
 
@@ -512,16 +644,18 @@ ul, li {
 }
 
 .map > .main > .segment > .title {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 20px;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 20px;
     vertical-align: middle;
 }
 
 .map > .main > .segment > .title > h2 {
     height: 20px;
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 20px;
     vertical-align: middle;
     padding-right: 20px;
@@ -529,7 +663,7 @@ ul, li {
 
 .map > .main > .segment > .title > h2:before {
     height: 20px;
-    font-size: 20px;
+    font-size: 2rem;
     content: "|";
     color: #cc364f;
     margin: 5px;
@@ -538,6 +672,8 @@ ul, li {
 .map > .main > .segment > .title > hr {
     float: right;
     margin: 10px 0;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     flex: 1;
 }
 

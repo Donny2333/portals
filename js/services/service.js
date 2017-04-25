@@ -28,7 +28,19 @@
                     var deferred = $q.defer();
 
                     $http.get(url).then(function (res) {
-                        deferred.resolve(res);
+                        deferred.resolve(res.data);
+                    }, function (err) {
+                        deferred.reject(err);
+                    });
+
+                    return deferred.promise;
+                },
+
+                post: function (url, param) {
+                    var deferred = $q.defer();
+
+                    $http.post(url, param).then(function (res) {
+                        deferred.resolve(res.data);
                     }, function (err) {
                         deferred.reject(err);
                     });
@@ -39,21 +51,27 @@
         }])
 
         .factory("Sections", ["Http", function (Http) {
-            var url = "/json/sections.json";
+            var url = "http://192.168.99.105:9527/MapService.svc/GetDocNames";
 
             return {
                 get: function () {
                     return Http.get(url);
+                },
+                post: function (param) {
+                    return Http.post(url, param);
                 }
             }
         }])
 
         .factory("Gallery", ["Http", function (Http) {
-            var url = "/json/gallery.json";
+            var url = "http://192.168.99.105:9527/MapService.svc/GetMapDocList";
 
             return {
                 get: function () {
-                    return Http.get(url);
+                    return Http.jsonp(url);
+                },
+                post: function (param) {
+                    return Http.post(url, param);
                 }
             }
         }])
