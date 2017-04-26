@@ -49,7 +49,7 @@
                     pagination: {
                         totalItems: 0,
                         maxSize: 5,
-                        pageNo: 0,
+                        pageNo: 1,
                         pageSize: 12,
                         maxPage: 1
                     }
@@ -73,77 +73,31 @@
                     }
                 });
 
-                Gallery.post({
-                    // userId: 1,
-                    typeMap: "",
-                    typeRes: "公用",
-                    pageNo: 0,
-                    pageNum: vm.pagination.pageSize
-                }).then(function (data) {
-                    if (data.status === "ok") {
-                        vm.gallery = [];
-                        data.result.map(function (gallery) {
-                            vm.gallery.push({
-                                id: gallery.Id,
-                                title: gallery.Name,
-                                author: gallery.Author,
-                                update: gallery.UpdateTime.split(' ')[0],
-                                version: "1.0.0",
-                                img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
-                                brief: gallery.Detail,
-                                detail: gallery.Detail2
-                            })
-                        });
-                        vm.expand.last = Math.ceil(vm.gallery.length / 4) - 1;
-                        vm.pagination.totalItems = data.count;
-                        vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
+                $scope.expand = function (expand) {
+                    if (expand) {
+                        vm.pagination = {
+                            pageNo: 1,
+                            pageSize: 4
+                        };
+                    } else {
+                        vm.pagination = {
+                            pageNo: 1,
+                            pageSize: 12
+                        };
                     }
-                    else {
-                        console.log(data);
-                    }
-                });
+                    vm.toolbox.expand = expand;
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate].name);
+                };
 
                 $scope.classify = function (id) {
                     vm.classificate = id;
+                    console.log(id);
 
-                    // Todo: request data from server
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[id].name);
                 };
 
                 $scope.pageChanged = function () {
-                    Gallery.post({
-                        // userId: 1,
-                        typeMap: "",
-                        typeRes: "公用",
-                        pageNo: vm.pagination.pageNo - 1,
-                        pageNum: vm.pagination.pageSize
-                    }).then(function (data) {
-                        if (data.status === "ok") {
-                            vm.gallery = [];
-                            data.result.map(function (gallery) {
-                                vm.gallery.push({
-                                    id: gallery.Id,
-                                    title: gallery.Name,
-                                    author: gallery.Author,
-                                    update: gallery.UpdateTime.split(' ')[0],
-                                    version: "1.0.0",
-                                    img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
-                                    brief: gallery.Detail,
-                                    detail: gallery.Detail2
-                                })
-                            });
-                            vm.expand = {
-                                id: 0,
-                                state: false,
-                                open: [true, false, false],
-                                last: Math.ceil(vm.gallery.length / 4) - 1
-                            };
-                            vm.pagination.totalItems = data.count;
-                            vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
-                        }
-                        else {
-                            console.log(data);
-                        }
-                    });
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate].name);
                 };
 
                 $scope.change = function (id) {
@@ -161,7 +115,11 @@
                     // Todo: fulfill segmets
                     vm.segments = [{
                         id: 0,
-                        title: "描述",
+                        title: "概述",
+                        content: vm.data.brief
+                    }, {
+                        id: 1,
+                        title: "详情",
                         content: vm.data.detail
                     }];
                 };
@@ -189,5 +147,45 @@
                         }
                     });
                 };
+
+                var reload = function (pageNo, pageSize, typeMap, typeRes, mapType) {
+                    Gallery.post({
+                        // userId: 1,
+                        pageNo: pageNo,
+                        pageNum: pageSize,
+                        tagName: typeMap || "",
+                        typeRes: typeRes || "公用",
+                        mapType: mapType || "mapserver"
+                    }).then(function (data) {
+                        if (data.status === "ok" && data.result) {
+                            vm.gallery = [];
+                            data.result.length > 0 && data.result.map(function (gallery) {
+                                vm.gallery.push({
+                                    id: gallery.Id,
+                                    title: gallery.Name,
+                                    author: gallery.Author,
+                                    update: gallery.UpdateTime.split(' ')[0],
+                                    version: "1.0.0",
+                                    img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
+                                    brief: gallery.Detail,
+                                    detail: gallery.Detail2
+                                })
+                            });
+                            vm.expand = {
+                                id: 0,
+                                state: false,
+                                open: [true, false, false],
+                                last: Math.ceil(vm.gallery.length / 4) - 1
+                            };
+                            vm.pagination.totalItems = data.count;
+                            vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
+                        }
+                        else {
+                            console.log(data);
+                        }
+                    });
+                };
+
+                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "城管");
             }]);
 })(angular);

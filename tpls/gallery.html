@@ -17,11 +17,11 @@
                         </div>
                         <div class="btn-group" role="group">
                             <button class="btn btn-default" ng-class="{active: !vm.toolbox.expand}"
-                                    ng-click="vm.toolbox.expand=false">
+                                    ng-click="expand(false)">
                                 <img src="../images/grid.png">
                             </button>
                             <button class="btn btn-default" ng-class="{active: vm.toolbox.expand}"
-                                    ng-click="vm.toolbox.expand=true">
+                                    ng-click="expand(true)">
                                 <img src="../images/line.png">
                             </button>
                         </div>
@@ -45,9 +45,9 @@
                                 <div class="info">
                                     <h2>{{item.title}}</h2>
                                     <div ng-if="vm.toolbox.expand">
-                                        <p>上次修改时间：<span class="lightblue">{{vm.gallery[vm.expand.id].update}}</span></p>
+                                        <p>上次修改时间：<span class="lightblue">{{item.update}}</span></p>
                                         <p style="margin-left: 30px">
-                                            版本号：<span class="lightblue">{{vm.gallery[vm.expand.id].version}}</span>
+                                            版本号：<span class="lightblue">{{item.version}}</span>
                                         </p>
                                     </div>
                                     <span ng-if="vm.toolbox.expand">{{item.brief}}</span>
@@ -90,8 +90,9 @@
                         </ul>
                         <div class="pagination">
                             <ul uib-pagination class="pagination-sm" total-items="vm.pagination.totalItems"
-                                ng-model="vm.pagination.pageNo" max-size="vm.pagination.maxSize"
-                                ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;"></ul>
+                                items-per-page="vm.pagination.pageSize" ng-model="vm.pagination.pageNo"
+                                max-size="vm.pagination.maxSize" ng-change="pageChanged()" previous-text="&lsaquo;"
+                                next-text="&rsaquo;"></ul>
                         </div>
                     </div>
                 </div>
