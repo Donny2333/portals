@@ -6,6 +6,7 @@
 
     angular.module('portals', [
         'ngAnimate',
+        'ui.bootstrap',
         'portals.config',
         'portals.routers',
         'portals.directives',
