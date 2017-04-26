@@ -81,6 +81,7 @@
                     pageNum: vm.pagination.pageSize
                 }).then(function (data) {
                     if (data.status === "ok") {
+                        vm.gallery = [];
                         data.result.map(function (gallery) {
                             vm.gallery.push({
                                 id: gallery.Id,
@@ -96,7 +97,6 @@
                         vm.expand.last = Math.ceil(vm.gallery.length / 4) - 1;
                         vm.pagination.totalItems = data.count;
                         vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
-                        console.log(vm.pagination.maxPage);
                     }
                     else {
                         console.log(data);
@@ -107,6 +107,43 @@
                     vm.classificate = id;
 
                     // Todo: request data from server
+                };
+
+                $scope.pageChanged = function () {
+                    Gallery.post({
+                        // userId: 1,
+                        typeMap: "",
+                        typeRes: "公用",
+                        pageNo: vm.pagination.pageNo - 1,
+                        pageNum: vm.pagination.pageSize
+                    }).then(function (data) {
+                        if (data.status === "ok") {
+                            vm.gallery = [];
+                            data.result.map(function (gallery) {
+                                vm.gallery.push({
+                                    id: gallery.Id,
+                                    title: gallery.Name,
+                                    author: gallery.Author,
+                                    update: gallery.UpdateTime.split(' ')[0],
+                                    version: "1.0.0",
+                                    img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
+                                    brief: gallery.Detail,
+                                    detail: gallery.Detail2
+                                })
+                            });
+                            vm.expand = {
+                                id: 0,
+                                state: false,
+                                open: [true, false, false],
+                                last: Math.ceil(vm.gallery.length / 4) - 1
+                            };
+                            vm.pagination.totalItems = data.count;
+                            vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
+                        }
+                        else {
+                            console.log(data);
+                        }
+                    });
                 };
 
                 $scope.change = function (id) {
