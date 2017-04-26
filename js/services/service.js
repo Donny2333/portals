@@ -35,7 +35,6 @@
 
                     return deferred.promise;
                 },
-
                 post: function (url, param) {
                     var deferred = $q.defer();
 

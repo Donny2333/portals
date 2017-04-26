@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('portals.controllers')
-        .controller('GalleryController', ['$scope', '$timeout', '$http', 'Sections', 'Gallery',
-            function ($scope, $timeout, $http, Sections, Gallery) {
+        .controller('GalleryController', ['$scope', '$timeout', '$http', 'Sections', 'Gallery', 'URL_CFG',
+            function ($scope, $timeout, $http, Sections, Gallery, URL_CFG) {
                 var vm = $scope.vm = {
                     title: 'Living Atlas 中的专题地图',
                     classificate: 0,
@@ -48,7 +48,8 @@
                     expand: {
                         id: 0,
                         state: false,
-                        open: [true, false, false]
+                        open: [true, false, false],
+                        last: 0
                     },
                     flipper: false,
                     data: {
@@ -81,7 +82,7 @@
                         vm.sections.push({
                             id: index,
                             name: section
-                        });
+                        })
                     })
                 });
 
@@ -97,14 +98,15 @@
                             id: gallery.Id,
                             title: gallery.Name,
                             author: gallery.Author,
-                            update: gallery.UpdateTime,
+                            update: gallery.UpdateTime.split(' ')[0],
                             version: "1.0.0",
                             visited: 200,
                             level: 1,
-                            img: "gallery.PicPath",
+                            img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
                             description: gallery.Detail
                         })
-                    })
+                    });
+                    vm.expand.last = Math.ceil(vm.gallery.length / 4) - 1;
                 });
 
                 $scope.classify = function (id) {
