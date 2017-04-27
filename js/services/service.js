@@ -49,8 +49,8 @@
             }
         }])
 
-        .factory("Sections", ["Http", function (Http) {
-            var url = "http://192.168.99.105:9527/MapService.svc/GetDocNames";
+        .factory("Sections", ["Http", "URL_CFG", function (Http, URL_CFG) {
+            var url = URL_CFG.api + "GetDocNames";
 
             return {
                 get: function () {
@@ -62,8 +62,8 @@
             }
         }])
 
-        .factory("Gallery", ["Http", function (Http) {
-            var url = "http://192.168.99.105:9527/MapService.svc/GetMapDocList";
+        .factory("Gallery", ["Http", "URL_CFG", function (Http, URL_CFG) {
+            var url = URL_CFG.api + "GetMapDocList";
 
             return {
                 get: function () {

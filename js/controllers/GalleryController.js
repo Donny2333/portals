@@ -56,7 +56,7 @@
                 };
 
                 Sections.post({
-                    typeRes: "公用",
+                    typeRes: "Public",
                     fieldName: "TagName",
                     mapType: "mapserver"
                 }).then(function (data) {
@@ -154,7 +154,7 @@
                         pageNo: pageNo,
                         pageNum: pageSize,
                         tagName: typeMap || "",
-                        typeRes: typeRes || "公用",
+                        typeRes: typeRes || "Public",
                         mapType: mapType || "mapserver"
                     }).then(function (data) {
                         if (data.status === "ok" && data.result) {
