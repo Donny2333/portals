@@ -122,7 +122,7 @@ ul, li {
 
 .gallery > .head > .toolbox > .search > .droplist {
     font-size: 1.2rem;
-    padding-top: 5px;
+    padding: 5px 0;
     color: black;
     background-color: white;
 }
@@ -147,6 +147,7 @@ ul, li {
     width: 20px;
     background-color: transparent;
     background-image: url("../images/down.png");
+    pointer-events: none;
 }
 
 .gallery > .head > .toolbox > .btn-group {
@@ -171,7 +172,7 @@ ul, li {
 }
 
 .gallery > .head > .toolbox button > img {
-    margin-top: -5px;
+    margin-top: -6px;
 }
 
 .gallery > .main {
@@ -306,6 +307,7 @@ ul, li {
     width: 580px;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-right: 10px;
 }
 
 .gallery > .main > .content > ul > li.expand > .info > h2 {
@@ -315,12 +317,15 @@ ul, li {
 
 .gallery > .main > .content > ul > li.expand > .info p {
     display: inline-block;
-    margin: 0;
+    font-size: 1.4rem;
+    line-height: 20px;
     color: #dedede;
 }
 
 .gallery > .main > .content > ul > li.expand > .info > span {
     font-size: 1.2rem;
+    line-height: 22px;
+    margin: -5px 0 0 0;
     color: #bfbfbf;
 }
 
@@ -384,6 +389,11 @@ ul, li {
     border: 1px solid #ededed;
 }
 
+.gallery > .main > .content > ul > li.list:hover {
+    background-color: #e6ecff;
+    border: 1px solid #e6ecff;
+}
+
 .gallery > .main > .content > ul > li.list:first-child {
     margin-top: 20px;
 }
@@ -408,22 +418,28 @@ ul, li {
     justify-content: space-between;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-right: 10px;
 }
 
 .gallery > .main > .content > ul > li.list > .info > h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin: 0;
     color: #333333;
 }
 
 .gallery > .main > .content > ul > li.list > .info p {
     display: inline-block;
-    margin: 0;
+    font-size: 1.4rem;
+    line-height: 20px;
     color: #6b6b6b;
 }
 
 .gallery > .main > .content > ul > li.list > .info > span {
     color: #808080;
+    font-size: 1.2rem;
+    line-height: 22px;
+    margin: -5px 0 0 0;
+    vertical-align: top;
 }
 
 .gallery > .main > .content > .pagination {
@@ -541,6 +557,10 @@ ul, li {
 
 .lightblue {
     color: #a8c7e5;
+}
+
+.lightblue2 {
+    color: #73b3e0;
 }
 
 /* entire container, keeps perspective */
