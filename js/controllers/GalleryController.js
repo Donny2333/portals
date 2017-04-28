@@ -55,11 +55,7 @@
                     }
                 };
 
-                Sections.post({
-                    typeRes: "Public",
-                    fieldName: "TagName",
-                    mapType: "mapserver"
-                }).then(function (data) {
+                Sections.get("../../json/sections.json").then(function (data) {
                     if (data.status === "ok") {
                         data.result.map(function (section, index) {
                             vm.sections.push({
@@ -72,6 +68,24 @@
                         console.log(data);
                     }
                 });
+
+                // Sections.post({
+                //     typeRes: "Public",
+                //     fieldName: "TagName",
+                //     mapType: "mapserver"
+                // }).then(function (data) {
+                //     if (data.status === "ok") {
+                //         data.result.map(function (section, index) {
+                //             vm.sections.push({
+                //                 id: index,
+                //                 name: section
+                //             })
+                //         })
+                //     }
+                //     else {
+                //         console.log(data);
+                //     }
+                // });
 
                 $scope.expand = function (expand) {
                     if (expand) {
@@ -149,14 +163,16 @@
                 };
 
                 var reload = function (pageNo, pageSize, typeMap, typeRes, mapType) {
-                    Gallery.post({
-                        // userId: 1,
-                        pageNo: pageNo,
-                        pageNum: pageSize,
-                        tagName: typeMap || "",
-                        typeRes: typeRes || "Public",
-                        mapType: mapType || "mapserver"
-                    }).then(function (data) {
+                    // Gallery.post({
+                    //     // userId: 1,
+                    //     pageNo: pageNo,
+                    //     pageNum: pageSize,
+                    //     tagName: typeMap || "",
+                    //     typeRes: typeRes || "Public",
+                    //     mapType: mapType || "mapserver"
+                    // }).then(function (data) {
+
+                    Gallery.get("../../json/gallery.json").then(function (data) {
                         if (data.status === "ok" && data.result) {
                             vm.gallery = [];
                             data.result.length > 0 && data.result.map(function (gallery) {
@@ -166,7 +182,8 @@
                                     author: gallery.Author,
                                     update: gallery.UpdateTime.split(' ')[0],
                                     version: "1.0.0",
-                                    img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
+                                    // img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
+                                    img: gallery.img,
                                     brief: gallery.Detail,
                                     detail: gallery.Detail2
                                 })
