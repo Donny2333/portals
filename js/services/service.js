@@ -50,10 +50,10 @@
         }])
 
         .factory("Sections", ["Http", "URL_CFG", function (Http, URL_CFG) {
-            // var url = URL_CFG.api + "GetDocNames";
+            var url = URL_CFG.api + "GetDocNames";
 
             return {
-                get: function (url) {
+                get: function () {
                     return Http.get(url);
                 },
                 post: function (param) {
@@ -63,14 +63,20 @@
         }])
 
         .factory("Gallery", ["Http", "URL_CFG", function (Http, URL_CFG) {
-            // var url = URL_CFG.api + "GetMapDocList";
+            var url = URL_CFG.api + "GetMapDocList";
 
             return {
-                get: function (url) {
+                get: function () {
                     return Http.get(url);
                 },
                 post: function (param) {
                     return Http.post(url, param);
+                },
+                preview: function (param) {
+                    return Http.post(URL_CFG.rar + 'MapService.svc/GetAtlas', param);
+                },
+                download: function (param) {
+                    return Http.post(URL_CFG.rar + 'MapService.svc/DownLoadAtlas', param);
                 }
             }
         }])

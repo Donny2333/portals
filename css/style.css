@@ -714,3 +714,113 @@ ul, li {
     padding: 30px 15px;
     line-height: 30px;
 }
+
+.flipbook-viewport {
+    position: fixed;
+    margin-top: 20px;
+    padding-top: 20px;
+    height: 800px;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flip-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.flip-close:after {
+    content: '✕';
+    position: absolute;
+    padding-left: 5px;
+    top: 5px;
+    right: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.flip-close:hover:after {
+    background-color: #f87574;
+    color: white;
+}
+
+.flip-buttons {
+    margin-bottom: 20px;
+}
+
+#flipbook {
+    margin: 0 auto;
+}
+
+#flipbook .hard {
+    background: #ccc !important;
+    color: #333;
+    -webkit-box-shadow: inset 0 0 5px #666;
+    -moz-box-shadow: inset 0 0 5px #666;
+    -o-box-shadow: inset 0 0 5px #666;
+    -ms-box-shadow: inset 0 0 5px #666;
+    box-shadow: inset 0 0 5px #666;
+    font-weight: bold;
+}
+
+.left {
+    background-position: left top;
+    background-size: 800px 600px;
+    height: 600px;
+    width: 400px;
+}
+
+.right {
+    background-position: right top;
+    background-size: 800px 600px;
+    height: 600px;
+    width: 400px;
+}
+
+.first-page {
+    background-image: url('../images/封面1.png');
+    background-size: 800px 600px;
+}
+
+.flip-name {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    font-size: 26px;
+    color: white;
+}
+
+.flip-company {
+    position: absolute;
+    color: white;
+    right: 20px;
+    bottom: 5px;
+}
+
+.last-page {
+    background-image: url('../images/底页1.png');
+    background-size: 800px 600px;
+}
+
+.img1 {
+    background-image: url('../images/01行政区划.jpg');
+}
+
+.img2 {
+    background-image: url('../images/02地理概况.jpg');
+}
+
+.img3 {
+    background-image: url('../images/03地表覆盖.jpg');
+}

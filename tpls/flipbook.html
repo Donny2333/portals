@@ -1,0 +1,22 @@
+<div class="flipbook-viewport">
+    <div class="flip-close" ng-click="vm.showBook=false"></div>
+    <div class="flip-buttons">
+        <button class="btn btn-default" ng-click="download(true)">单页下载</button>
+        <button class="btn btn-default" ng-click="download()">整册下载</button>
+    </div>
+    <div class="flipbook-container">
+        <div id="flipbook">
+            <div class="first-page">
+                <div class="flip-name">
+                    老河口地理国情图集
+                    <div>(2016)</div>
+                </div>
+                <div class="flip-company">湖北地信科技集团股份有限公司</div>
+            </div>
+            <div ng-repeat-start="atlas in vm.atlas.pages" ng-style="{'background-image': url(atlas.picPath)}"
+                 class="left"></div>
+            <div ng-repeat-end ng-style="{'background-image': url(atlas.picPath)}" class="right"></div>
+            <div class="last-page"></div>
+        </div>
+    </div>
+</div>

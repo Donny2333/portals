@@ -3,7 +3,7 @@
         <div class="front" ng-class="{top: !vm.flipper, bottom: vm.flipper}">
             <div class="gallery">
                 <div class="head">
-                    <h2 class="title">{{vm.title}}</h2>
+                    <!--<h2 class="title">{{vm.title}}</h2>-->
                     <div class="toolbox">
                         <span>排序依据：</span>
                         <div class="search">
@@ -116,8 +116,8 @@
                         </table>
                     </div>
                     <div class="method">
-                        <button class="btn btn-outline full-btn btn-blue">查看</button>
-                        <button class="btn btn-outline full-btn btn-blue">共享</button>
+                        <button class="btn btn-outline full-btn btn-blue" ng-click="preview()">查看</button>
+                        <button class="btn btn-outline full-btn btn-blue" ng-click="download()">下载</button>
                     </div>
                 </div>
                 <div class="main">
@@ -133,4 +133,5 @@
             </div>
         </div>
     </div>
+    <flip-book ng-if="vm.showBook" pages="vm.atlas.pages"></flip-book>
 </div>

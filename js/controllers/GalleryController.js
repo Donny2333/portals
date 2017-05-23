@@ -11,6 +11,10 @@
                     title: 'Living Atlas 中的专题地图',
                     classificate: 0,
                     sections: [],
+                    atlas: {
+                        total: 0,
+                        pages: []
+                    },
                     selected: {
                         id: 0,
                         name: '最新地图',
@@ -44,6 +48,7 @@
                         last: 0
                     },
                     flipper: false,
+                    showBook: false,
                     data: {},
                     segments: [],
                     pagination: {
@@ -55,7 +60,10 @@
                     }
                 };
 
-                Sections.get("../../json/sections.json").then(function (data) {
+                Sections.post({
+                    typeRes: "Public",
+                    fieldName: "TagName"
+                }).then(function (data) {
                     if (data.status === "ok") {
                         data.result.map(function (section, index) {
                             vm.sections.push({
@@ -64,28 +72,9 @@
                             })
                         })
                     }
-                    else {
-                        console.log(data);
-                    }
                 });
 
-                // Sections.post({
-                //     typeRes: "Public",
-                //     fieldName: "TagName",
-                //     mapType: "mapserver"
-                // }).then(function (data) {
-                //     if (data.status === "ok") {
-                //         data.result.map(function (section, index) {
-                //             vm.sections.push({
-                //                 id: index,
-                //                 name: section
-                //             })
-                //         })
-                //     }
-                //     else {
-                //         console.log(data);
-                //     }
-                // });
+                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "城管");
 
                 $scope.expand = function (expand) {
                     if (expand) {
@@ -125,6 +114,7 @@
                 $scope.goMore = function (id) {
                     vm.flipper = true;
                     vm.data = vm.gallery[id];
+                    console.log(vm.data);
 
                     // Todo: fulfill segmets
                     vm.segments = [{
@@ -162,17 +152,72 @@
                     });
                 };
 
-                var reload = function (pageNo, pageSize, typeMap, typeRes, mapType) {
-                    // Gallery.post({
-                    //     // userId: 1,
-                    //     pageNo: pageNo,
-                    //     pageNum: pageSize,
-                    //     tagName: typeMap || "",
-                    //     typeRes: typeRes || "Public",
-                    //     mapType: mapType || "mapserver"
-                    // }).then(function (data) {
+                $scope.preview = function () {
+                    if (vm.data.tagName === "图册") {
+                        vm.showBook = true;
+                        Gallery.preview({
+                            MapId: vm.data.id
+                        }).then(function (res) {
+                            vm.atlas.pages = [];
+                            res.result.map(function (atlas) {
+                                vm.atlas.pages.push({
+                                    detail: atlas.Detail,
+                                    id: atlas.Id,
+                                    mapId: atlas.MapId,
+                                    name: atlas.Name,
+                                    pageNo: atlas.PageNo,
+                                    pageType: atlas.PageType,
+                                    picPath: URL_CFG.img + _.replace(atlas.PicPath, '{$}', 'normal'),
+                                    tagName: atlas.TagName
+                                })
+                            });
+                            vm.atlas.total = res.count;
+                            console.log(vm.atlas.pages);
+                        });
+                    }
+                };
 
-                    Gallery.get("../../json/gallery.json").then(function (data) {
+                $scope.download = function (singlePage) {
+                    var atlasIdLst = [];
+                    var pageNo = $('#flipbook').turn("page");
+                    if (singlePage && 1 < pageNo < (vm.atlas.total + 1) * 2) {
+                        atlasIdLst.push(Math.floor(pageNo / 2));
+                    }
+
+                    Gallery.download({
+                        AtlasIdLst: atlasIdLst,
+                        ImgSizeMode: 'Small',
+                        pageNo: 0,
+                        pageNum: 10
+                    }).then(function (res) {
+                        console.log(res.result);
+                        var anchor = angular.element('<a/>');
+                        anchor.attr({
+                            href: res.result.BaseUrl + res.result.FileName,
+                            target: '_blank',
+                            download: res.result.FileName
+                        })[0].click();
+                    })
+                };
+
+
+                /**
+                 * load gallery
+                 * @param pageNo
+                 * @param pageSize
+                 * @param tagName
+                 * @param typeRes
+                 * @param mapType
+                 */
+                function reload(pageNo, pageSize, tagName, typeRes, mapType) {
+                    Gallery.post({
+                        // userId: 1,
+                        pageNo: pageNo,
+                        pageNum: pageSize,
+                        tagName: tagName || "",
+                        typeRes: typeRes || "Public",
+                        mapType: mapType || ""
+                    }).then(function (data) {
                         if (data.status === "ok" && data.result) {
                             vm.gallery = [];
                             data.result.length > 0 && data.result.map(function (gallery) {
@@ -182,8 +227,9 @@
                                     author: gallery.Author,
                                     update: gallery.UpdateTime.split(' ')[0],
                                     version: "1.0.0",
-                                    // img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
-                                    img: gallery.img,
+                                    img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
+                                    // img: "http://192.168.99.105:9528/RootData/public/MapDoc/Images/big/安全设施分布图.png",
+                                    tagName: gallery.TagName,
                                     brief: gallery.Detail,
                                     detail: gallery.Detail2
                                 })
@@ -200,9 +246,8 @@
                         else {
                             console.log(data);
                         }
-                    });
-                };
+                    })
+                }
 
-                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "城管");
             }]);
 })(angular);

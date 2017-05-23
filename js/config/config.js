@@ -5,15 +5,17 @@
     "use strict";
 
     var prodURL = 'https://**.***.com/',
-        devURL = 'http://192.168.99.105:9527/',
+        devURL = 'http://172.30.1.246:9527/',
         Urls = {
             Prod_Cfg: {
                 api: prodURL + 'MapService.svc/',
-                img: prodURL
+                img: prodURL,
+                rar: prodURL
             },
             Dev_Cfg: {
                 api: devURL + 'MapService.svc/',
-                img: devURL
+                img: 'http://172.30.1.246:9528/',
+                rar: 'http://172.30.1.246:9527/'
             }
         };
 
