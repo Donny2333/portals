@@ -41,7 +41,7 @@
                         <ul>
                             <li ng-repeat-start="item in vm.gallery" ng-mouseover="hover($index)"
                                 ng-class="{grid: !vm.toolbox.expand, list: vm.toolbox.expand, hover: $index===vm.expand.id}">
-                                <img ng-src="{{item.img}}">
+                                <img height="140" width="210" ng-src="{{item.img}}">
                                 <div class="info">
                                     <h2>{{item.title}}</h2>
                                     <div ng-if="vm.toolbox.expand">
@@ -58,7 +58,8 @@
                             </li>
                             <li class="expand" ng-if="!vm.toolbox.expand&&$index % 4 == 3"
                                 ng-show="vm.expand.open[($index+1)/4-1]" ng-repeat-end>
-                                <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150">
+                                <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150"
+                                     style="background-color: white">
                                 <div class="info">
                                     <h2>{{vm.gallery[vm.expand.id].title}}</h2>
                                     <div>
@@ -74,7 +75,8 @@
                             <!-- if the row is not full -->
                             <li class="expand" ng-if="!vm.toolbox.expand&&vm.gallery.length % 4 != 0"
                                 ng-show="vm.expand.open[vm.expand.last]">
-                                <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150">
+                                <img ng-src="{{vm.gallery[vm.expand.id].img}}" height="110" width="150"
+                                     style="background-color: white">
                                 <div class="info">
                                     <h2>{{vm.gallery[vm.expand.id].title}}</h2>
                                     <div>
