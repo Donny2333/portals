@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('portals.controllers')
-        .controller('GalleryController', ['$scope', '$timeout', '$http', 'Sections', 'Gallery', 'URL_CFG',
-            function ($scope, $timeout, $http, Sections, Gallery, URL_CFG) {
+        .controller('GalleryController', ['$scope', '$timeout', '$http', '$window', 'Sections', 'Gallery', 'URL_CFG',
+            function ($scope, $timeout, $http, $window, Sections, Gallery, URL_CFG) {
                 var vm = $scope.vm = {
                     title: 'Living Atlas 中的专题地图',
                     classificate: 0,
@@ -172,32 +172,38 @@
                                 })
                             });
                             vm.atlas.total = res.count;
-                            console.log(vm.atlas.pages);
+                            // console.log(vm.atlas.pages);
                         });
+                    } else {
+                        $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
                     }
                 };
 
                 $scope.download = function (singlePage) {
-                    var atlasIdLst = [];
-                    var pageNo = $('#flipbook').turn("page");
-                    if (singlePage && 1 < pageNo < (vm.atlas.total + 1) * 2) {
-                        atlasIdLst.push(Math.floor(pageNo / 2));
-                    }
+                    if (vm.data.tagName === "图册") {
+                        var atlasIdLst = [];
+                        var pageNo = $('#flipbook').turn("page");
+                        if (singlePage && 1 < pageNo < (vm.atlas.total + 1) * 2) {
+                            atlasIdLst.push(Math.floor(pageNo / 2));
+                        }
 
-                    Gallery.download({
-                        AtlasIdLst: atlasIdLst,
-                        ImgSizeMode: 'Small',
-                        pageNo: 0,
-                        pageNum: 10
-                    }).then(function (res) {
-                        console.log(res.result);
-                        var anchor = angular.element('<a/>');
-                        anchor.attr({
-                            href: res.result.BaseUrl + res.result.FileName,
-                            target: '_blank',
-                            download: res.result.FileName
-                        })[0].click();
-                    })
+                        Gallery.download({
+                            AtlasIdLst: atlasIdLst,
+                            ImgSizeMode: 'Small',
+                            pageNo: 0,
+                            pageNum: 10
+                        }).then(function (res) {
+                            console.log(res.result);
+                            var anchor = angular.element('<a/>');
+                            anchor.attr({
+                                href: res.result.BaseUrl + res.result.FileName,
+                                target: '_blank',
+                                download: res.result.FileName
+                            })[0].click();
+                        })
+                    } else {
+
+                    }
                 };
 
 
