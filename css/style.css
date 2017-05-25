@@ -225,10 +225,14 @@ ul, li {
 }
 
 .gallery > .main > .section > .category > li.active,
+.gallery > .main > .section > .category > li.active > a {
+    background-color: #cc364f !important;
+    color: white;
+}
+
 .gallery > .main > .section > .category > li:hover,
-.gallery > .main > .section > .category > li.active > a,
 .gallery > .main > .section > .category > li:hover > a {
-    background-color: #cc364f;
+    background-color: rgb(204, 50, 100);
     color: white;
 }
 
