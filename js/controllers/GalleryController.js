@@ -175,6 +175,7 @@
                             // console.log(vm.atlas.pages);
                         });
                     } else {
+                        console.log(vm.data.tagName);
                         $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
                     }
                 };
