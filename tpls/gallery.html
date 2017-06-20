@@ -1,6 +1,6 @@
 <div class="flip-container" ng-class="{flip: vm.flipper}">
     <div class="flipper">
-        <div class="front" ng-class="{top: !vm.flipper, bottom: vm.flipper}">
+        <div class="front">
             <div class="gallery">
                 <div class="head">
                     <!--<h2 class="title">{{vm.title}}</h2>-->
@@ -100,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <div class="back" ng-class="{top: vm.flipper, bottom: !vm.flipper}">
+        <div class="back">
             <div class="map">
                 <div class="head">
                     <img ng-src="{{vm.data.img}}" height="116">

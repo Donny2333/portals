@@ -8,18 +8,26 @@ body {
     background-color: #ededef;
 }
 
-a, button {
+a,
+button {
     cursor: pointer;
     /*font-weight: lighter !important;*/
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
     margin: 0;
     padding: 0;
     /*font-weight: lighter !important;*/
 }
 
-ul, li {
+ul,
+li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -31,6 +39,7 @@ ul, li {
         padding: 0;
     }
 }
+
 
 /************************ navbar *******************************/
 
@@ -56,6 +65,7 @@ ul, li {
     color: white;
     background-color: #00abe5;
 }
+
 
 /************************** gallery ******************************/
 
@@ -163,6 +173,7 @@ ul, li {
     outline: none;
     background-color: transparent;
     color: white;
+    -webkit-box-shadow: none;
     box-shadow: none;
 }
 
@@ -187,6 +198,7 @@ ul, li {
     width: 220px;
     height: 770px;
     background-color: white;
+    -webkit-box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -567,21 +579,8 @@ ul, li {
     color: #73b3e0;
 }
 
+
 /* entire container, keeps perspective */
-
-.flip-container {
-    -webkit-perspective: 1000px;
-    -moz-perspective: 1000px;
-    perspective: 1000px;
-}
-
-/* flip the pane when hovered */
-.flip-container.flip .flipper {
-    /*-webkit-transform: rotateY(180deg);*/
-    /*transform: rotateY(180deg);*/
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-}
 
 .flip-container,
 .front,
@@ -590,50 +589,95 @@ ul, li {
     height: 850px;
 }
 
-/* flip speed goes here */
-
-.flipper {
-    -webkit-transition: 0.6s;
-    transition: 0.6s;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    position: relative;
-    z-index: 100 !important;
+.flip-container {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -o-perspective: 1000px;
+    -ms-perspective: 1000px;
 }
 
-/* hide back of pane during swap */
+.flip-container .flipper {
+    transition: 0.5s ease-out;
+    -webkit-transition: 0.5s ease-out;
+    -moz-transition: 0.5s ease-out;
+    -o-transition: 0.5s ease-out;
+    -ms-transition: 0.5s ease-out;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    position: relative;
+}
+
+.flip-container.flip .flipper {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+}
 
 .front,
 .back {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
     position: absolute;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: visible;
     top: 0;
     left: 0;
 }
 
-/* front pane, placed above back */
-
 .front {
-    z-index: 10;
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
 }
-
-/* back, initially hidden pane */
 
 .back {
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
 }
 
-.flip-container .top {
-    z-index: 10 !important;
+.flip-container .front,
+.flip-container.flip .back {
+    animation: stayvisible 0.5s both;
+    -webkit-animation: stayvisible 0.5s both;
+    -moz-animation: stayvisible 0.5s both;
+    -o-animation: stayvisible 0.5s both;
+    -ms-animation: donothing 0.5s;
+    -ms-transition: visibility 0s linear 0.17s;
+    visibility: visible;
 }
 
-.flip-container .bottom {
-    z-index: 9 !important;
+.flip-container.flip .front,
+.flip-container .back {
+    animation: stayvisible 0.5s both;
+    -webkit-animation: stayvisible 0.5s both;
+    -moz-animation: stayvisible 0.5s both;
+    -o-animation: stayvisible 0.5s both;
+    -ms-animation: donothing 0.5s;
+    -ms-transition: visibility 0s linear 0.17s;
+    visibility: hidden;
 }
+
+@keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
+@-webkit-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
+@-moz-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
+@-o-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
+@-ms-keyframes donothing { 0% { } 100% { } }
+
 
 /************************** map ******************************/
+
 .map {
     position: relative;
     background-color: white;
@@ -665,7 +709,8 @@ ul, li {
 }
 
 .map > .head > .info tr td {
-    font-size: 1.4rem;;
+    font-size: 1.4rem;
+    ;
     color: #616161;
 }
 
@@ -679,9 +724,7 @@ ul, li {
     padding: 0 32px;
 }
 
-.map > .main > .segment {
-
-}
+.map > .main > .segment {}
 
 .map > .main > .segment > .title {
     display: -webkit-box;
@@ -732,8 +775,15 @@ ul, li {
     z-index: 100;
     top: 0;
     left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
@@ -774,7 +824,6 @@ ul, li {
     background: #ccc !important;
     color: #333;
     -webkit-box-shadow: inset 0 0 5px #666;
-    -moz-box-shadow: inset 0 0 5px #666;
     -o-box-shadow: inset 0 0 5px #666;
     -ms-box-shadow: inset 0 0 5px #666;
     box-shadow: inset 0 0 5px #666;
