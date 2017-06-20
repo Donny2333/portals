@@ -94,8 +94,6 @@
 
                 $scope.classify = function (id) {
                     vm.classificate = id;
-                    console.log(id);
-
                     reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[id].name);
                 };
 
@@ -114,7 +112,6 @@
                 $scope.goMore = function (id) {
                     vm.flipper = true;
                     vm.data = vm.gallery[id];
-                    console.log(vm.data);
 
                     // Todo: fulfill segmets
                     vm.segments = [{
@@ -172,10 +169,8 @@
                                 })
                             });
                             vm.atlas.total = res.count;
-                            // console.log(vm.atlas.pages);
                         });
                     } else {
-                        console.log(vm.data.tagName);
                         $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
                     }
                 };
@@ -194,7 +189,6 @@
                             pageNo: 0,
                             pageNum: 10
                         }).then(function (res) {
-                            console.log(res.result);
                             var anchor = angular.element('<a/>');
                             anchor.attr({
                                 href: res.result.BaseUrl + res.result.FileName,
@@ -249,9 +243,6 @@
                             };
                             vm.pagination.totalItems = data.count;
                             vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
-                        }
-                        else {
-                            console.log(data);
                         }
                     })
                 }

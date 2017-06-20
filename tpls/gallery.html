@@ -121,7 +121,7 @@
                         <button ng-if="vm.data.tagName!=='模板'" class="btn btn-outline full-btn btn-blue"
                                 ng-click="preview()">查看
                         </button>
-                        <!--<button class="btn btn-outline full-btn btn-blue" ng-click="download()">下载</button>-->
+                        <button class="btn btn-outline full-btn btn-blue" ng-click="download()">下载</button>
                     </div>
                 </div>
                 <div class="main">
@@ -132,7 +132,9 @@
                         </div>
                         <p class="content">{{segment.content}}</p>
                     </div>
-                    <button class="btn btn-primary btn-back" ng-click="vm.flipper=false">返回</button>
+                    <button class="btn btn-primary btn-back" ng-click="vm.flipper=false">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="margin-left:-5px"></span>返回
+                    </button>
                 </div>
             </div>
         </div>
