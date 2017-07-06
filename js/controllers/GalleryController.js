@@ -127,7 +127,7 @@
                         };
                     }
                     vm.toolbox.expand = expand;
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate].name);
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, vm.classificate.classify);
                 };
 
                 $scope.classify = function (id, classify) {
