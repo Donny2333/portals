@@ -5,12 +5,58 @@
     'use strict';
 
     angular.module('portals.controllers')
-        .controller('GalleryController', ['$scope', '$timeout', '$http', '$window', 'Sections', 'Gallery', 'URL_CFG',
-            function ($scope, $timeout, $http, $window, Sections, Gallery, URL_CFG) {
+        .controller('GalleryController', ['$scope', '$timeout', '$http', '$window', '$q', 'Sections', 'Gallery', 'URL_CFG',
+            function ($scope, $timeout, $http, $window, $q, Sections, Gallery, URL_CFG) {
                 var vm = $scope.vm = {
                     title: 'Living Atlas 中的专题地图',
-                    classificate: 0,
-                    sections: [],
+                    classificate: {
+                        id: 0,
+                        classify: '城管'
+                    },
+                    sections: [{
+                        id: 0,
+                        img: '/images/地图资源.png',
+                        checked: '/images/地图资源_red.png',
+                        field: "地图资源",
+                        classify: []
+                    }, {
+                        id: 1,
+                        img: '/images/模板.png',
+                        checked: '/images/模板_red.png',
+                        field: "模板",
+                        classify: []
+                    }, {
+                        id: 2,
+                        img: '/images/图册.png',
+                        checked: '/images/图册_red.png',
+                        field: '计算资源',
+                        classify: []
+                    }, {
+                        id: 3,
+                        img: '/images/图册.png',
+                        checked: '/images/图册_red.png',
+                        field: "图册",
+                        classify: []
+
+                    }, {
+                        id: 4,
+                        img: '/images/三维.png',
+                        checked: '/images/三维_red.png',
+                        field: "三维",
+                        classify: []
+                    }, {
+                        id: 5,
+                        img: '/images/要素.png',
+                        checked: '/images/要素_red.png',
+                        field: "要素",
+                        classify: []
+                    }, {
+                        id: 6,
+                        img: '/images/政务信息资源.png',
+                        checked: '/images/政务信息资源_red.png',
+                        field: "政务信息资源",
+                        classify: []
+                    }],
                     atlas: {
                         total: 0,
                         pages: []
@@ -60,21 +106,13 @@
                     }
                 };
 
-                Sections.post({
-                    typeRes: "Public",
-                    fieldName: "TagName"
-                }).then(function (data) {
-                    if (data.status === "ok") {
-                        data.result.map(function (section, index) {
-                            vm.sections.push({
-                                id: index,
-                                name: section
-                            })
-                        })
-                    }
+                vm.sections.map(function (section) {
+                    getClassify(section.field).then(function (data) {
+                        section.classify = data;
+                    })
                 });
 
-                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "城管");
+                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
 
                 $scope.expand = function (expand) {
                     if (expand) {
@@ -92,13 +130,14 @@
                     reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate].name);
                 };
 
-                $scope.classify = function (id) {
-                    vm.classificate = id;
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[id].name);
+                $scope.classify = function (id, classify) {
+                    vm.classificate.id = id;
+                    vm.classificate.classify = classify;
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, classify);
                 };
 
                 $scope.pageChanged = function () {
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate].name);
+                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, vm.classificate.classify);
                 };
 
                 $scope.change = function (id) {
@@ -201,20 +240,11 @@
                     }
                 };
 
-
-                /**
-                 * load gallery
-                 * @param pageNo
-                 * @param pageSize
-                 * @param tagName
-                 * @param typeRes
-                 * @param mapType
-                 */
-                function reload(pageNo, pageSize, tagName, typeRes, mapType) {
+                function reload(pageNo, pageSize, parentName, tagName, typeRes, mapType) {
                     Gallery.post({
-                        // userId: 1,
                         pageNo: pageNo,
                         pageNum: pageSize,
+                        parentName: parentName || "",
                         tagName: tagName || "",
                         typeRes: typeRes || "Public",
                         mapType: mapType || ""
@@ -247,5 +277,31 @@
                     })
                 }
 
-            }]);
+                function getClassify(parentName, fieldName, typeRes) {
+                    var deferred = $q.defer();
+
+                    Sections.post({
+                        parentName: parentName || "",
+                        fieldName: fieldName || "TagName",
+                        typeRes: typeRes || "Public"
+                    }).then(function (data) {
+                        if (data.status === "ok") {
+                            var sections = [];
+                            data.result.map(function (section, index) {
+                                sections.push(section);
+                            });
+                            deferred.resolve(sections);
+                        } else {
+                            deferred.reject(data);
+                        }
+                    }, function (err) {
+                        deferred.reject(err);
+                    });
+
+                    return deferred.promise;
+                }
+
+            }
+        ])
+    ;
 })(angular);

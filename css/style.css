@@ -11,7 +11,7 @@ body {
 a,
 button {
     cursor: pointer;
-    /*font-weight: lighter !important;*/
+    text-decoration: none !important;
 }
 
 h1,
@@ -40,6 +40,14 @@ li {
     }
 }
 
+.pull-right.active {
+    color: #cc364f;
+}
+
+.icon-cursor {
+    margin-top: 2px;
+    font-size: 10px;
+}
 
 /************************ navbar *******************************/
 
@@ -65,7 +73,6 @@ li {
     color: white;
     background-color: #00abe5;
 }
-
 
 /************************** gallery ******************************/
 
@@ -218,42 +225,49 @@ li {
     -webkit-text-fill-color: transparent;
 }
 
-.gallery > .main > .section > .category {
-    padding-top: 10px;
+.field {
+    font-size: 14px;
 }
 
-.gallery > .main > .section > .category > li {
+.field.active {
+    color: #cc364f;
+}
+
+.category > li {
     position: relative;
-    padding-left: 48px;
+    padding-left: 60px;
     height: 35px;
     cursor: pointer;
     line-height: 35px;
     vertical-align: middle;
 }
 
-.gallery > .main > .section > .category > li > a {
+.category > li > a {
     text-decoration: none;
-    color: black;
+    background-color: transparent;
+    color: #737373;
+    font-size: 14px;
 }
 
-.gallery > .main > .section > .category > li.active,
-.gallery > .main > .section > .category > li.active > a {
-    background-color: #cc364f !important;
-    color: white;
+.category > li.active,
+.category > li.active > a {
+    background-color: rgb(204, 54, 79) !important;
+    color: white !important;
 }
 
-.gallery > .main > .section > .category > li:hover,
-.gallery > .main > .section > .category > li:hover > a {
-    background-color: rgb(204, 50, 100);
-    color: white;
+.category > li:hover > a {
+    color: rgb(204, 54, 79);
 }
 
-.gallery > .main > .section > .category > li.active:before,
-.gallery > .main > .section > .category > li:hover:before {
+.category > li.active:before {
     position: absolute;
     top: -1px;
-    left: 20px;
+    left: 36px;
     content: "○";
+}
+
+.section .panel-body {
+    padding: 0;
 }
 
 .gallery > .main > .content {
@@ -579,7 +593,6 @@ li {
     color: #73b3e0;
 }
 
-
 /* entire container, keeps perspective */
 
 .flip-container,
@@ -669,12 +682,48 @@ li {
     visibility: hidden;
 }
 
-@keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
-@-webkit-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
-@-moz-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
-@-o-keyframes stayvisible { from { visibility: visible; } to { visibility: visible; } }
-@-ms-keyframes donothing { 0% { } 100% { } }
+@keyframes stayvisible {
+    from {
+        visibility: visible;
+    }
+    to {
+        visibility: visible;
+    }
+}
 
+@-webkit-keyframes stayvisible {
+    from {
+        visibility: visible;
+    }
+    to {
+        visibility: visible;
+    }
+}
+
+@-moz-keyframes stayvisible {
+    from {
+        visibility: visible;
+    }
+    to {
+        visibility: visible;
+    }
+}
+
+@-o-keyframes stayvisible {
+    from {
+        visibility: visible;
+    }
+    to {
+        visibility: visible;
+    }
+}
+
+@-ms-keyframes donothing {
+    0% {
+    }
+    100% {
+    }
+}
 
 /************************** map ******************************/
 
@@ -709,8 +758,7 @@ li {
 }
 
 .map > .head > .info tr td {
-    font-size: 1.4rem;
-    ;
+    font-size: 1.4rem;;
     color: #616161;
 }
 
@@ -724,7 +772,8 @@ li {
     padding: 0 32px;
 }
 
-.map > .main > .segment {}
+.map > .main > .segment {
+}
 
 .map > .main > .segment > .title {
     display: -webkit-box;
@@ -766,7 +815,7 @@ li {
 }
 
 .flipbook-viewport {
-    position: fixed;
+    position: absolute;
     margin-top: 20px;
     padding-top: 20px;
     height: 800px;
@@ -816,8 +865,13 @@ li {
     margin-bottom: 20px;
 }
 
+.flipbook-container {
+    position: relative;
+}
+
 #flipbook {
     margin: 0 auto;
+    overflow: hidden;
 }
 
 #flipbook .hard {

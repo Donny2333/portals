@@ -30,12 +30,26 @@
                 <div class="main">
                     <div class="section">
                         <span class="title">资源分类</span>
-                        <ul class="category">
-                            <li ng-class="{active: $index===vm.classificate}" ng-click="classify($index)"
-                                ng-repeat="section in vm.sections">
-                                <a>{{section.name}}</a>
-                            </li>
-                        </ul>
+                        <uib-accordion close-others="true">
+                            <div uib-accordion-group class="category" ng-repeat="section in vm.sections"
+                                 is-open="status.open">
+                                <uib-accordion-heading>
+                                    <div>
+                                        <img ng-src="{{vm.classificate.id===section.id?section.checked:section.img}}"
+                                             style="margin: -5px 5px">
+                                        <span class="field" ng-class="{active: vm.classificate.id===section.id}">{{section.field}}</span>
+                                        <i class="pull-right glyphicon icon-cursor" ng-class="{'glyphicon-menu-down': status.open, 'glyphicon-menu-right': !status.open,
+                                       'active': vm.classificate.id===section.id}"></i>
+                                    </div>
+                                </uib-accordion-heading>
+                                <ul class="category">
+                                    <li ng-class="{active: section.id===vm.classificate.id&&c===vm.classificate.classify}"
+                                        ng-click="classify(section.id, c)" ng-repeat="c in section.classify">
+                                        <a>{{c}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </uib-accordion>
                     </div>
                     <div class="content">
                         <ul>
@@ -133,7 +147,8 @@
                         <p class="content">{{segment.content}}</p>
                     </div>
                     <button class="btn btn-primary btn-back" ng-click="vm.flipper=false">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="margin-left:-5px"></span>返回
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"
+                              style="margin-left:-5px"></span>返回
                     </button>
                 </div>
             </div>
