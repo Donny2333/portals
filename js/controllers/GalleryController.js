@@ -189,7 +189,8 @@
                 };
 
                 $scope.preview = function () {
-                    if (vm.data.tagName === "图册") {
+                    console.log(vm.data);
+                    if (vm.data.parentName === "图册") {
                         vm.showBook = true;
                         Gallery.preview({
                             MapId: vm.data.id
@@ -209,6 +210,8 @@
                             });
                             vm.atlas.total = res.count;
                         });
+                    } else if (vm.data.parentName === "三维") {
+                        $window.open(vm.data.mapServerPath, '_blank');
                     } else {
                         $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
                     }
@@ -260,9 +263,11 @@
                                     version: "1.0.0",
                                     img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
                                     // img: "http://192.168.99.105:9528/RootData/public/MapDoc/Images/big/安全设施分布图.png",
+                                    parentName: gallery.ParentName,
                                     tagName: gallery.TagName,
                                     brief: gallery.Detail,
-                                    detail: gallery.Detail2
+                                    detail: gallery.Detail2,
+                                    mapServerPath: gallery.MapServerPath
                                 })
                             });
                             vm.expand = {
