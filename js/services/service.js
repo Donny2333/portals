@@ -22,6 +22,15 @@
             return uuid;
         })
 
+        .factory('Now', function () {
+            return {
+                date: function () {
+                    var d = new Date();
+                    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-');
+                }
+            }
+        })
+
         .factory('Http', ["$q", "$http", function ($q, $http) {
             return {
                 get: function (url) {
@@ -50,7 +59,7 @@
         }])
 
         .factory("Sections", ["Http", "URL_CFG", function (Http, URL_CFG) {
-            var url = URL_CFG.api + "GetDocNames";
+            var url = URL_CFG.api + "MapService.svc/GetDocNames";
 
             return {
                 get: function () {
@@ -63,7 +72,7 @@
         }])
 
         .factory("Gallery", ["Http", "URL_CFG", function (Http, URL_CFG) {
-            var url = URL_CFG.api + "GetMapDocList";
+            var url = URL_CFG.api + "MapService.svc/GetMapDocList";
 
             return {
                 get: function () {
@@ -73,10 +82,27 @@
                     return Http.post(url, param);
                 },
                 preview: function (param) {
-                    return Http.post(URL_CFG.rar + 'MapService.svc/GetAtlas', param);
+                    return Http.post(URL_CFG.api + 'MapService.svc/GetAtlas', param);
                 },
                 download: function (param) {
-                    return Http.post(URL_CFG.rar + 'MapService.svc/DownLoadAtlas', param);
+                    return Http.post(URL_CFG.api + 'MapService.svc/DownLoadAtlas', param);
+                }
+            }
+        }])
+
+        .factory("Calculate", ["Http", "URL_CFG", function (Http, URL_CFG) {
+            return {
+                getDlgqParam: function (param) {
+                    return Http.post(URL_CFG.api + 'MapService.svc/GetDlgqParam', param);
+                },
+                getThemeImagePoint: function (param) {
+                    return Http.post(URL_CFG.api + 'CalMapService.svc/GetThemeImagePoint', param);
+                },
+                getThemeImageLine: function (param) {
+                    return Http.post(URL_CFG.api + 'CalMapService.svc/GetThemeImageLine', param);
+                },
+                getThemeImageArea: function (param) {
+                    return Http.post(URL_CFG.api + 'CalMapService.svc/GetThemeImageArea', param);
                 }
             }
         }])

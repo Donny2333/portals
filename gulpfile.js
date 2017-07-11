@@ -9,7 +9,7 @@ var uglify = require("gulp-uglify");
 gulp.task("js", function () {
     return gulp.src(["./js/*/*.js", "./js/*.js"])
         .pipe(concat("bundle.js"))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest("./build/"));
 });
 
@@ -23,7 +23,7 @@ gulp.task("serve", ["js"], function () {
 
         gulp.watch([
             "*.html",
-            "tpls/*.html",
+            "tpls/**/*.html",
             "css/*.css"
         ], ["reload"]).on("change", function (event) {
             console.log("File " + event.path + " was " + event.type + ", running tasks...");

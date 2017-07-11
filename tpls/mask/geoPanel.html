@@ -1,0 +1,58 @@
+<div>
+    <div class="geo-panel" ng-if="!vm.overlay.showImg">
+        <div class="top">
+            <div class="title">{{vm.overlay.title}}</div>
+        </div>
+        <div class="main">
+            <div class="left">
+                <ul class="list">
+                    <li class="item" ng-class="{active: vm.overlay.select===item}" ng-repeat="item in vm.overlay.list"
+                        ng-click="select(item)">{{item.Name2}}
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <ul class="radio-list">
+                    <li class="radio-item" ng-repeat="radio in vm.overlay.geography.radios.data">
+                        <input type="radio" id="{{'radio-' + radio.id}}" name="selector"
+                               ng-model="vm.overlay.geography.radios.checked" ng-value="radio.value">
+                        <label for="{{'radio-' + radio.id}}">{{radio.name}}</label>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="item">
+                        <span class="name">制图标题：</span>
+                        <input class="value" type="text" ng-model="vm.overlay.geography.title">
+                    </li>
+                    <li class="item">
+                        <span class="name">制图人：</span>
+                        <input class="value" type="text" ng-model="vm.overlay.geography.creator">
+                    </li>
+                    <li class="item">
+                        <span class="name">制图单位：</span>
+                        <input class="value" type="text" ng-model="vm.overlay.geography.org">
+                    </li>
+                    <li class="item">
+                        <span class="name">制图时间：</span>
+                        <input class="value" type="text" ng-model="vm.overlay.geography.date">
+                    </li>
+                </ul>
+                <ul class="checkbox-list" ng-if="vm.overlay.geography.showCheckboxs">
+                    <li class="checkbox-item" ng-repeat="checkbox in vm.overlay.geography.checkboxs">
+                        <input type="checkbox" id="{{'checkbox-' + radio.id}}" ng-model="checkbox.checked">
+                        <label for="{{'checkbox-' + radio.id}}">{{checkbox.name}}</label>
+                    </li>
+                </ul>
+                <div class="btns">
+                    <button type="button" class="btn btn-default" ng-click="closeMask()">取消</button>
+                    <button type="button" class="btn btn-primary" ng-click="commit()">确定</button>
+                </div>
+            </div>
+        </div>
+        <i class="icon-close" ng-click="closeMask()"></i>
+    </div>
+    <div ng-if="vm.overlay.showImg">
+        <img ng-src="{{vm.overlay.imgUrl}}">
+        <i class="icon-close" ng-click="closeMask()"></i>
+    </div>
+</div>

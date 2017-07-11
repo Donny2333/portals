@@ -96,4 +96,47 @@
             }
         }])
 
+        .directive('mask', ['$compile', function ($compile) {
+            return {
+                restrict: 'E',
+                transclude: true,
+                // replace: true,
+                controller: 'MaskController',
+                templateUrl: 'tpls/mask/mask.html',
+                link: function (scope, element, attrs) {
+                    var mask;
+                    var childScope;
+                    scope.$watch('vm', function (value) {
+                        if (value) {
+                            if (value.showMask) {
+                                // append child dynamically.
+                                mask = element.children('#mask');
+                                mask.html('');
+                                childScope = scope.$new();
+                                scope.vm.overlay = value.overlay;
+                                mask.append($compile(value.template)(childScope));
+                            } else {
+                                // remove child.
+                                mask = element.children('#mask');
+                                mask.empty();
+                                if (childScope) {
+                                    childScope.$destroy();
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }])
+
+        .directive('geoPanel', function () {
+            return {
+                restrict: 'E',
+                require: '^mask',
+                replace: true,
+                templateUrl: 'tpls/mask/geoPanel.html',
+                controller: 'GeoPanelController'
+            }
+        })
+
 })(angular);

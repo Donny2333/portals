@@ -49,6 +49,51 @@ li {
     font-size: 10px;
 }
 
+.icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    font-style: normal;
+    font-size: 22px;
+    height: 26px;
+    width: 26px;
+    margin: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.icon-close:after {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    color: white;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    content: '✕';
+    text-align: center;
+}
+
+.icon-close:hover {
+    background-color: #f87574;
+}
+
+.icon-close:hover:after {
+    color: white;
+}
+
+.icon-close.table-close {
+    top: 0;
+    right: 0;
+    background-color: transparent;
+}
+
+.icon-close.table-close:hover:after {
+    color: #f87574;
+}
+
 /************************ navbar *******************************/
 
 .navbar-white {
@@ -933,4 +978,183 @@ li {
 
 .img3 {
     background-image: url('../images/03地表覆盖.jpg');
+}
+
+/******************* mask **********************/
+
+.mask {
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.mask > .overlay {
+    position: relative;
+    margin: 220px auto;
+    height: 480px;
+    width: 790px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: white;
+}
+
+.geo-panel {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 500px;
+    width: 690px;
+    border-radius: 10px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+
+.geo-panel > .top {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    min-height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url("../images/top.png");
+}
+
+.geo-panel > .top > .title {
+    display: inline-block;
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+    line-height: 1.545;
+}
+
+.geo-panel > .main {
+    position: relative;
+    height: 440px;
+    flex: auto;
+    display: flex;
+    padding: 0 20px;
+}
+
+.geo-panel > .main > .left {
+    height: 440px;
+    width: 320px;
+    padding: 30px;
+}
+
+.geo-panel > .main > .left > .list {
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgb(222, 222, 222);
+    overflow: auto;
+}
+
+.geo-panel > .main > .left > .list > .item {
+    padding: 8px 15px;
+    border-bottom: 1px solid rgb(222, 222, 222);
+    cursor: pointer;
+}
+
+.geo-panel > .main > .left > .list > .item.active {
+    color: white;
+    background-color: #337ab7 !important;
+}
+
+.geo-panel > .main > .left > .list > .item:hover {
+    background-color: #ececec;
+}
+
+.geo-panel > .main > .left > .list > .item:last-child {
+    margin-bottom: -1px;
+}
+
+.geo-panel > .main > .right {
+    position: relative;
+    height: 440px;
+    flex: auto;
+    padding: 30px;
+}
+
+.radio-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.radio-item > input[type=radio] {
+    margin-right: 5px;
+}
+
+.radio-item > label {
+    font-weight: normal;
+}
+
+.right > .list {
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.right > .list > .item > .name {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+
+.right > .list > .item > .value {
+    display: inline-block;
+    width: 200px;
+}
+
+.right > .checkbox-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 35px 0;
+}
+
+.right > .checkbox-list > .checkbox-item > input {
+    margin-right: 5px;
+}
+
+.right > .checkbox-list > .checkbox-item > label {
+    font-weight: normal;
+}
+
+.right > .btns {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.right > .btns > .btn {
+    margin-left: 10px;
 }

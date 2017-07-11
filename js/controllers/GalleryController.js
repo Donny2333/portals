@@ -5,8 +5,8 @@
     'use strict';
 
     angular.module('portals.controllers')
-        .controller('GalleryController', ['$scope', '$timeout', '$http', '$window', '$q', 'Sections', 'Gallery', 'URL_CFG',
-            function ($scope, $timeout, $http, $window, $q, Sections, Gallery, URL_CFG) {
+        .controller('GalleryController', ['$scope', '$rootScope', '$timeout', '$http', '$window', '$q', 'Sections', 'Gallery', 'Calculate', 'URL_CFG',
+            function ($scope, $rootScope, $timeout, $http, $window, $q, Sections, Gallery, Calculate, URL_CFG) {
                 var vm = $scope.vm = {
                     title: 'Living Atlas 中的专题地图',
                     classificate: {
@@ -27,8 +27,8 @@
                         classify: []
                     }, {
                         id: 2,
-                        img: '/images/图册.png',
-                        checked: '/images/图册_red.png',
+                        img: '/images/计算资源.png',
+                        checked: '/images/计算资源_red.png',
                         field: '计算资源',
                         classify: []
                     }, {
@@ -109,7 +109,11 @@
                 vm.sections.map(function (section) {
                     getClassify(section.field).then(function (data) {
                         section.classify = data;
-                    })
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }, function (err) {
+                    console.log(err);
                 });
 
                 reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
@@ -189,31 +193,57 @@
                 };
 
                 $scope.preview = function () {
-                    console.log(vm.data);
-                    if (vm.data.parentName === "图册") {
-                        vm.showBook = true;
-                        Gallery.preview({
-                            MapId: vm.data.id
-                        }).then(function (res) {
-                            vm.atlas.pages = [];
-                            res.result.map(function (atlas) {
-                                vm.atlas.pages.push({
-                                    detail: atlas.Detail,
-                                    id: atlas.Id,
-                                    mapId: atlas.MapId,
-                                    name: atlas.Name,
-                                    pageNo: atlas.PageNo,
-                                    pageType: atlas.PageType,
-                                    picPath: URL_CFG.img + _.replace(atlas.PicPath, '{$}', 'normal'),
-                                    tagName: atlas.TagName
-                                })
+                    switch (vm.data.parentName) {
+                        case '图册':
+                            vm.showBook = true;
+                            Gallery.preview({
+                                MapId: vm.data.id
+                            }).then(function (res) {
+                                vm.atlas.pages = [];
+                                res.result.map(function (atlas) {
+                                    vm.atlas.pages.push({
+                                        detail: atlas.Detail,
+                                        id: atlas.Id,
+                                        mapId: atlas.MapId,
+                                        name: atlas.Name,
+                                        pageNo: atlas.PageNo,
+                                        pageType: atlas.PageType,
+                                        picPath: URL_CFG.img + _.replace(atlas.PicPath, '{$}', 'normal'),
+                                        tagName: atlas.TagName
+                                    })
+                                });
+                                vm.atlas.total = res.count;
                             });
-                            vm.atlas.total = res.count;
-                        });
-                    } else if (vm.data.parentName === "三维") {
-                        $window.open(vm.data.mapServerPath, '_blank');
-                    } else {
-                        $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
+                            break;
+
+                        case '三维':
+                            $window.open(vm.data.mapServerPath, '_blank');
+                            break;
+
+                        case '计算资源':
+                            if (vm.data.tagName === '地理国情') {
+                                Calculate.getDlgqParam({
+                                    MapId: vm.data.id
+                                }).then(function (res) {
+                                    $rootScope.$broadcast('mask:show', {
+                                        showMask: true,
+                                        template: '<geo-panel></geo-panel>',
+                                        overlay: {
+                                            title: '地理国情统计出图',
+                                            list: res.result,
+                                            data: vm.data,
+                                            select: res.result[0]
+                                        }
+                                    });
+                                });
+                            } else if (vm.data.tagName === '专题统计') {
+
+                            }
+                            break;
+
+                        default:
+                            $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
+                            break;
                     }
                 };
 
@@ -279,6 +309,8 @@
                             vm.pagination.totalItems = data.count;
                             vm.pagination.maxPage = Math.ceil(data.count / vm.pagination.pageSize);
                         }
+                    }, function (err) {
+                        console.log(err);
                     })
                 }
 
@@ -292,7 +324,7 @@
                     }).then(function (data) {
                         if (data.status === "ok") {
                             var sections = [];
-                            data.result.map(function (section, index) {
+                            data.result.map(function (section) {
                                 sections.push(section);
                             });
                             deferred.resolve(sections);
@@ -305,7 +337,6 @@
 
                     return deferred.promise;
                 }
-
             }
         ])
     ;

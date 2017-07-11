@@ -4,18 +4,18 @@
 (function () {
     "use strict";
 
-    var prodURL = 'http://172.30.1.246:9527/',
-        devURL = 'http://192.168.250.44:9527/',
+    var prodURL = 'http://172.30.1.246',
+        devURL = 'http://192.168.250.44',
         Urls = {
             Prod_Cfg: {
-                api: prodURL + 'MapService.svc/',
-                img: 'http://172.30.1.246:9528/',
-                rar: prodURL
+                api: prodURL + ':9527/',
+                img: prodURL + ':9528/',
+                temp: prodURL + ':9528/RootData/TempData/'
             },
             Dev_Cfg: {
-                api: devURL + 'MapService.svc/',
-                img: 'http://192.168.250.44:9528/',
-                rar: devURL
+                api: devURL + ':9527/',
+                img: devURL + ':9528/',
+                temp: devURL + ':9528/RootData/TempData/'
             }
         };
 
