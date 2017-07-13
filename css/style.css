@@ -8,6 +8,10 @@ body {
     background-color: #ededef;
 }
 
+label {
+    font-weight: normal;
+}
+
 a,
 button {
     cursor: pointer;
@@ -94,7 +98,7 @@ li {
     color: #f87574;
 }
 
-/************************ navbar *******************************/
+/******************************* navbar *******************************/
 
 .navbar-white {
     margin-top: -1px;
@@ -119,7 +123,7 @@ li {
     background-color: #00abe5;
 }
 
-/************************** gallery ******************************/
+/******************************* gallery ******************************/
 
 .gallery {
     position: relative;
@@ -770,7 +774,7 @@ li {
     }
 }
 
-/************************** map ******************************/
+/******************************* map ******************************/
 
 .map {
     position: relative;
@@ -980,7 +984,7 @@ li {
     background-image: url('../images/03地表覆盖.jpg');
 }
 
-/******************* mask **********************/
+/******************************* mask ******************************/
 
 .mask {
     position: fixed;
@@ -1015,6 +1019,8 @@ li {
     flex-direction: column;
     background-color: white;
 }
+
+/******************************* geo-panel ******************************/
 
 .geo-panel {
     position: relative;
@@ -1157,4 +1163,345 @@ li {
 
 .right > .btns > .btn {
     margin-left: 10px;
+}
+
+/******************************* theme-panel ******************************/
+
+.theme-panel {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 500px;
+    width: 690px;
+    border-radius: 10px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+
+.theme-panel > .top {
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    min-height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url("../images/top.png");
+}
+
+.theme-panel > .top > .title {
+    display: inline-block;
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+    line-height: 1.545;
+}
+
+.theme-panel > .main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+.theme-panel > .main > .step1,
+.theme-panel > .main > .step2,
+.theme-panel > .main > .step3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0 30px;
+    transition: transform .6s ease-in;
+}
+
+.theme-panel > .main > .step1.swipe1,
+.theme-panel > .main > .step2.swipe1,
+.theme-panel > .main > .step3.swipe1 {
+    transform: translate(-100%, 0);
+}
+
+.theme-panel > .main > .step1.swipe2,
+.theme-panel > .main > .step2.swipe2,
+.theme-panel > .main > .step3.swipe2 {
+    transform: translate(-200%, 0);
+}
+
+.theme-panel > .main > .step2 {
+    margin-left: 100%;
+}
+
+.theme-panel > .main > .step3 {
+    margin-left: 200%;
+}
+
+.theme-panel > .main .step {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.theme-panel > .main .step > .step-name {
+    color: #414141;
+    margin: 5px;
+}
+
+.theme-panel > .main .file-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 0;
+    flex: auto;
+}
+
+.theme-panel > .main .file-content .get-template {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+
+.theme-panel > .main .file-content > .file-table {
+    border: 1px solid #d4d4d4;
+    margin-top: 10px;
+    /*padding: 5px 10px;*/
+    height: 230px;
+    overflow: auto;
+}
+
+.theme-panel > .main .file-content > .file-table > .table {
+    margin: 0;
+}
+
+.theme-panel > .main .file-content > .btn-next {
+    margin-top: 20px;
+}
+
+.theme-panel > .main .file-content > .btn-next button {
+    float: right;
+}
+
+.theme-panel > .main .file-pick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 520px;
+    height: 60px;
+}
+
+.theme-panel > .main .file-pick > .file-name {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 400px;
+    border: 1px solid #cccccc;
+    padding: 0 5px;
+}
+
+.file {
+    position: relative;
+    display: inline-block;
+    padding: 4px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.step2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.step2 > .cal-content {
+    flex: auto;
+    display: flex;
+}
+
+.step2 > .cal-content > .cal-left {
+    padding: 20px 0;
+    width: 60%;
+    color: #4c4c4c;
+}
+
+.cal-left .range-title {
+    padding-left: 30px;
+}
+
+.cal-left .range-div {
+    position: relative;
+    margin: 40px 0 0 60px;
+    height: 100px;
+    width: 200px;
+    border: 1px solid #dedede;
+}
+
+.cal-left .range-div > input {
+    height: 30px;
+    width: 100px;
+    position: absolute;
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    outline: none;
+    padding: 0 5px;
+}
+
+.range-top {
+    top: -15px;
+    left: 50px;
+}
+
+.range-bottom {
+    bottom: -15px;
+    left: 50px;
+}
+
+.range-left {
+    top: 35px;
+    left: -50px;
+}
+
+.range-right {
+    top: 35px;
+    right: -50px;
+}
+
+.range {
+    position: relative;
+    height: 250px;
+}
+
+.range > button {
+    position: absolute;
+    right: 80px;
+    bottom: 20px;
+}
+
+.cal-left > .img {
+
+}
+
+.cal-left > .img > .img-title {
+    padding-left: 30px;
+}
+
+.cal-left > .img > .img-value {
+    margin: 20px 0 0 20px;
+}
+
+.cal-left > .img > .img-value input {
+    height: 30px;
+    width: 100px;
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
+    outline: none;
+    padding: 0 5px;
+}
+
+.step2 > .cal-content > .cal-right {
+    position: relative;
+    flex: auto;
+    padding: 20px 0;
+}
+
+.cal-right > .target {
+    position: absolute;
+    width: 100%;
+}
+
+.cal-right > .target > .target-list {
+    padding: 10px;
+}
+
+.cal-right > .target > .target-list > .target-item {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.cal-right > .target > .target-list > .target-item > input {
+    margin-right: 10px;
+}
+
+.cal-right > .btn-next {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+.value-content {
+    display: flex;
+    height: 350px;
+}
+
+.value-content > .value-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 50%;
+    padding: 40px 20px;
+}
+
+.value-content > .value-left .value-img {
+
+}
+
+.value-content > .value-left > .value-bottom {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.value-content > .value-left .value-symbol {
+
+}
+
+.value-content > .value-left .value-color {
+
+}
+
+.value-content > .value-right {
+    flex: auto;
+    padding: 40px 20px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.value-content > .value-right > .value-list {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.value-content > .value-right > .value-list > .value-item {
+    display: flex;
+
+}
+
+.value-content > .value-right > .value-list > .value-item > span {
+    width: 90px;
+}
+
+.value-content > .value-right > .btn-next {
+    align-self: flex-end;
 }

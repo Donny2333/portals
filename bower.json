@@ -12,6 +12,7 @@
     "angular-animate": "^1.6.4",
     "lodash": "^4.17.4",
     "angular-bootstrap": "^2.5.0",
-    "turn.js": "*"
+    "turn.js": "*",
+    "js-xlsx": "^0.10.8"
   }
 }

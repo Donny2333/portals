@@ -139,4 +139,14 @@
             }
         })
 
+        .directive('themePanel', function () {
+            return {
+                restrict: 'E',
+                require: '^mask',
+                replace: true,
+                templateUrl: 'tpls/mask/themePanel.html',
+                controller: 'ThemePanelController'
+            }
+        })
+
 })(angular);

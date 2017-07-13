@@ -116,6 +116,18 @@
                     console.log(err);
                 });
 
+
+                $timeout(function () {
+                    $rootScope.$broadcast('mask:show', {
+                        showMask: true,
+                        template: '<theme-panel></theme-panel>',
+                        overlay: {
+                            title: '专题统计出图'
+                        }
+                    });
+                }, 0);
+
+
                 reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
 
                 $scope.expand = function (expand) {
@@ -237,7 +249,13 @@
                                     });
                                 });
                             } else if (vm.data.tagName === '专题统计') {
-
+                                $rootScope.$broadcast('mask:show', {
+                                    showMask: true,
+                                    template: '<theme-panel></theme-panel>',
+                                    overlay: {
+                                        title: '专题统计出图'
+                                    }
+                                });
                             }
                             break;
 

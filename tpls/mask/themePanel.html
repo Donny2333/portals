@@ -1,0 +1,131 @@
+<div class="theme-panel">
+    <div class="top">
+        <div class="title">{{vm.overlay.title}}</div>
+    </div>
+    <div class="main">
+        <div class="step1" ng-class="{'swipe1': step===1, 'swipe2': step===2}">
+            <div class="step">
+                <img src="images/step1.png">
+                <span class="step-name">选择数据源</span>
+            </div>
+            <div class="file-content">
+                <div class="file-input">
+                    <div class="file-pick">
+                        <span>导入Excel：</span>
+                        <div class="file-name">{{xlsName}}</div>
+                        <a href="javascript:;" class="file">
+                            <img src="images/file.png">
+                            <js-xls name="xlsName" onread="read" onerror="error"></js-xls>
+                        </a>
+                    </div>
+                    <a class="get-template">获取模版</a>
+                </div>
+                <div class="file-table table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="th in xlsData.head">{{th}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="td in xlsData.body">
+                            <td ng-repeat="th in xlsData.head">{{td[th]}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btn-next">
+                    <button class="btn btn-primary" ng-click="next(1)">下一步</button>
+                </div>
+            </div>
+        </div>
+        <div class="step2" ng-class="{'swipe1': step===1, 'swipe2': step===2}">
+            <div class="step">
+                <img src="images/step2.png">
+                <span class="step-name">计算内容</span>
+            </div>
+            <div class="cal-content">
+                <div class="cal-left">
+                    <div class="range">
+                        <span class="range-title">1、请选择范围：</span>
+                        <div class="range-div">
+                            <input type="tel" class="range-top">
+                            <input type="tel" class="range-right">
+                            <input type="tel" class="range-bottom">
+                            <input type="tel" class="range-left">
+                        </div>
+                        <button class="btn btn-success">设置</button>
+                    </div>
+                    <div class="img">
+                        <span class="img-title">2、请确定图片大小：</span>
+                        <div class="img-value">
+                            <span>宽：</span>
+                            <input type="tel">
+                            <span>高：</span>
+                            <input type="tel">
+                        </div>
+                    </div>
+                </div>
+                <div class="cal-right">
+                    <div class="target">
+                        <div class="target-title">3、请选择指标</div>
+                        <div class="target-list">
+                            <label class="target-item" ng-repeat="check in checkboxs">
+                                <input type="checkbox" ng-checked="check.checked">{{check.name}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="btn-next">
+                        <button class="btn btn-primary" ng-click="next(0)">上一步</button>
+                        <button class="btn btn-primary" ng-click="next(2)">下一步</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step3" ng-class="{'swipe1': step===1, 'swipe2': step===2}">
+            <div class="step">
+                <img src="images/step3.png">
+                <span class="step-name">符号样式</span>
+            </div>
+            <div class="value-content">
+                <div class="value-left">
+                    <img class="value-img" ng-src="{{symbolImg}}">
+                    <div class="value-bottom">
+                        <div class="value-symbol">
+                            <span>符号类型：</span>
+                            <select>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+                        <div class="value-color">
+                            <span>色彩方案：</span>
+                            <select>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="value-right">
+                    <ul class="value-list">
+                        <li class="value-item"><span>大小</span><input type="range"></li>
+                        <li class="value-item"><span>透明度</span><input type="range"></li>
+                        <li class="value-item"><span>厚度</span><input type="range"></li>
+                        <li class="value-item"><span>圆率</span><input type="range"></li>
+                        <li class="value-item"><span>环率</span><input type="range"></li>
+                    </ul>
+                    <div class="btn-next">
+                        <button class="btn btn-primary" ng-click="next(1)">返回</button>
+                        <button class="btn btn-primary" ng-click="next()">完成</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <i class="icon-close" ng-click="closeMask()"></i>
+</div>
