@@ -103,6 +103,9 @@
                 },
                 post: function (param) {
                     return Http.post(url, param);
+                },
+                getMapMenu: function (param) {
+                    return Http.post(URL_CFG.api + 'MapService.svc/GetMapMenu', param);
                 }
             }
         }])

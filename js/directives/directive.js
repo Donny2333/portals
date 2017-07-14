@@ -24,14 +24,12 @@
                     //监听DOM元素
                     scope.$watch('data', function (value) {
                         if (value.series) {
-                            // console.log(value);
                             myChat.setOption(scope.data);
                         }
                     });
 
                     scope.$watch('userStyle', function (value) {
                         if (value) {
-                            // console.log(valu  e);
                             myChat.resize();
                         }
                     })
@@ -53,7 +51,7 @@
                         height: 600,
                         when: {
                             turned: function (e, page, pageObj) {
-                                console.log(page);
+                                // console.log(page);
                             }
                         }
                     });

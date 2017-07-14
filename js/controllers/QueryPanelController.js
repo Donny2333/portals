@@ -15,34 +15,7 @@
                     head: ['Name', 'ReMark', 'Detail'],
                     body: []
                 };
-
-                var obj = {
-                    a: 1,
-                    'b': 'foo',
-                    c: [false, 'false', null, 'null', {
-                        d: {
-                            e: 1.3e5,
-                            f: '1.3e5'
-                        }
-                    }],
-                    "array": [
-                        1,
-                        2,
-                        3
-                    ],
-                    "boolean": true,
-                    "null": null,
-                    "number": 123,
-                    "object": {
-                        "a": "b",
-                        "c": "d",
-                        "e": "f"
-                    },
-                    "string": "Hello World"
-
-                };
-                var str = JSON.stringify(obj, undefined, 4);
-                vm.overlay.json = JSON.stringify(obj, undefined, 4);
+                vm.overlay.json = null;
 
                 $scope.assemble = function () {
                     var flag = true;

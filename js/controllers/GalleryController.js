@@ -10,58 +10,10 @@
                 var vm = $scope.vm = {
                     title: 'Living Atlas 中的专题地图',
                     classificate: {
-                        id: 0,
-                        classify: '城管'
+                        id: '1',
+                        classify: '20'
                     },
-                    sections: [{
-                        id: 0,
-                        img: '/images/地图资源.png',
-                        checked: '/images/地图资源_red.png',
-                        field: "地图资源",
-                        classify: []
-                    }, {
-                        id: 1,
-                        img: '/images/模板.png',
-                        checked: '/images/模板_red.png',
-                        field: "模板",
-                        classify: []
-                    }, {
-                        id: 2,
-                        img: '/images/计算资源.png',
-                        checked: '/images/计算资源_red.png',
-                        field: '计算资源',
-                        classify: []
-                    }, {
-                        id: 3,
-                        img: '/images/图册.png',
-                        checked: '/images/图册_red.png',
-                        field: "图册",
-                        classify: []
-                    }, {
-                        id: 4,
-                        img: '/images/服务资源.png',
-                        checked: '/images/服务资源_red.png',
-                        field: "服务资源",
-                        classify: []
-                    }, {
-                        id: 5,
-                        img: '/images/三维.png',
-                        checked: '/images/三维_red.png',
-                        field: "三维",
-                        classify: []
-                    }, {
-                        id: 6,
-                        img: '/images/要素.png',
-                        checked: '/images/要素_red.png',
-                        field: "要素",
-                        classify: []
-                    }, {
-                        id: 7,
-                        img: '/images/政务信息资源.png',
-                        checked: '/images/政务信息资源_red.png',
-                        field: "政务信息资源",
-                        classify: []
-                    }],
+                    sections: [],
                     atlas: {
                         total: 0,
                         pages: []
@@ -111,18 +63,45 @@
                     }
                 };
 
-                vm.sections.map(function (section) {
-                    getClassify(section.field).then(function (data) {
-                        section.classify = data;
-                    }, function (err) {
-                        console.log(err);
+                Sections.getMapMenu().then(function (res) {
+                    res.result.map(function (o) {
+                        if (o.parent_id == 0) {
+                            vm.sections.push({
+                                id: o.id,
+                                img: URL_CFG.img + o.normal_pic,
+                                checked: URL_CFG.img + o.select_pic,
+                                field: o.name,
+                                classify: []
+                            })
+                        }
                     });
-                }, function (err) {
-                    console.log(err);
+
+                    vm.sections.map(function (section) {
+                        res.result.map(function (o) {
+                            if (o.parent_id == section.id) {
+                                section.classify.push({
+                                    id: o.id,
+                                    name: o.name,
+                                    sort: o.sort
+                                });
+                            }
+                        });
+                    });
+
+                    vm.classificate = {
+                        id: vm.sections[0].id,
+                        classify: vm.sections[0].classify[0].id
+                    }
                 });
 
 
-                reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
+                reload({
+                    pageNo: vm.pagination.pageNo - 1,
+                    pageNum: vm.pagination.pageSize,
+                    tagId: 20,
+                    typeRes: "Public",
+                    mapType: ""
+                });
 
                 $scope.expand = function (expand) {
                     if (expand) {
@@ -137,17 +116,35 @@
                         };
                     }
                     vm.toolbox.expand = expand;
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, vm.classificate.classify);
+                    reload({
+                        pageNo: vm.pagination.pageNo - 1,
+                        pageNum: vm.pagination.pageSize,
+                        tagId: vm.classificate.classify,
+                        typeRes: "Public",
+                        mapType: ""
+                    });
                 };
 
                 $scope.classify = function (id, classify) {
                     vm.classificate.id = id;
                     vm.classificate.classify = classify;
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, classify);
+                    reload({
+                        pageNo: vm.pagination.pageNo - 1,
+                        pageNum: vm.pagination.pageSize,
+                        tagId: classify,
+                        typeRes: "Public",
+                        mapType: ""
+                    });
                 };
 
                 $scope.pageChanged = function () {
-                    reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, vm.sections[vm.classificate.id].field, vm.classificate.classify);
+                    reload({
+                        pageNo: vm.pagination.pageNo - 1,
+                        pageNum: vm.pagination.pageSize,
+                        tagId: vm.classificate.classify,
+                        typeRes: "Public",
+                        mapType: ""
+                    });
                 };
 
                 $scope.change = function (id) {
@@ -199,8 +196,8 @@
                 };
 
                 $scope.preview = function () {
-                    switch (vm.data.parentName) {
-                        case '图册':
+                    switch (vm.data.appType) {
+                        case 'altas_dlgq':
                             vm.showBook = true;
                             Gallery.preview({
                                 MapId: vm.data.id
@@ -222,44 +219,48 @@
                             });
                             break;
 
-                        case '三维':
+                        case 'map_3D':
                             $window.open(vm.data.mapServerPath, '_blank');
                             break;
 
-                        case '计算资源':
-                            if (vm.data.tagName === '地理国情') {
-                                Calculate.getDlgqParam({
-                                    MapId: vm.data.id
-                                }).then(function (res) {
-                                    $rootScope.$broadcast('mask:show', {
-                                        showMask: true,
-                                        template: '<geo-panel></geo-panel>',
-                                        overlay: {
-                                            title: '地理国情统计出图',
-                                            list: res.result,
-                                            data: vm.data,
-                                            select: res.result[0]
-                                        }
-                                    });
-                                });
-                            } else if (vm.data.tagName === '专题统计') {
+                        case 'cal_points':
+                        case 'cal_area':
+                        case 'cal_road':
+                        case 'cal_water':
+                            Calculate.getDlgqParam({
+                                MapId: vm.data.id
+                            }).then(function (res) {
                                 $rootScope.$broadcast('mask:show', {
                                     showMask: true,
-                                    template: '<theme-panel></theme-panel>',
+                                    template: '<geo-panel></geo-panel>',
                                     overlay: {
-                                        title: '专题统计出图',
-                                        xmin: vm.data.xmin,
-                                        xmax: vm.data.xmax,
-                                        ymin: vm.data.ymin,
-                                        ymax: vm.data.ymax,
-                                        imgHeight: 800,
-                                        imgWidth: 800
+                                        title: '地理国情统计出图',
+                                        list: res.result,
+                                        data: vm.data,
+                                        select: res.result[0]
                                     }
                                 });
-                            }
+                            });
                             break;
 
-                        case '服务资源':
+                        case 'cal_theme':
+                            $rootScope.$broadcast('mask:show', {
+                                showMask: true,
+                                template: '<theme-panel></theme-panel>',
+                                overlay: {
+                                    title: '专题统计出图',
+                                    xmin: vm.data.xmin,
+                                    xmax: vm.data.xmax,
+                                    ymin: vm.data.ymin,
+                                    ymax: vm.data.ymax,
+                                    imgHeight: 800,
+                                    imgWidth: 800
+                                }
+                            });
+                            break;
+
+                        case 'query_general':
+                        case 'query_qnl':
                             $rootScope.$broadcast('mask:show', {
                                 showMask: true,
                                 template: '<query-panel></query-panel>',
@@ -270,8 +271,11 @@
                             });
                             break;
 
-                        default:
+                        case 'mapshow':
                             $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
+                            break;
+
+                        default:
                             break;
                     }
                 };
@@ -302,19 +306,13 @@
                     }
                 };
 
-                function reload(pageNo, pageSize, parentName, tagName, typeRes, mapType) {
-                    Gallery.post({
-                        pageNo: pageNo,
-                        pageNum: pageSize,
-                        parentName: parentName || "",
-                        tagName: tagName || "",
-                        typeRes: typeRes || "Public",
-                        mapType: mapType || ""
-                    }).then(function (data) {
+                function reload(param) {
+                    Gallery.post(param).then(function (data) {
                         if (data.status === "ok" && data.result) {
                             vm.gallery = [];
                             data.result.length > 0 && data.result.map(function (gallery) {
                                 vm.gallery.push({
+                                    appType: gallery.AppType,
                                     id: gallery.Id,
                                     title: gallery.Name,
                                     author: gallery.Author,
@@ -322,7 +320,6 @@
                                     version: "1.0.0",
                                     img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
                                     // img: "http://192.168.99.105:9528/RootData/public/MapDoc/Images/big/安全设施分布图.png",
-                                    parentName: gallery.ParentName,
                                     tagName: gallery.TagName,
                                     brief: gallery.Detail,
                                     detail: gallery.Detail2,
@@ -345,30 +342,6 @@
                     }, function (err) {
                         console.log(err);
                     })
-                }
-
-                function getClassify(parentName, fieldName, typeRes) {
-                    var deferred = $q.defer();
-
-                    Sections.post({
-                        parentName: parentName || "",
-                        fieldName: fieldName || "TagName",
-                        typeRes: typeRes || "Public"
-                    }).then(function (data) {
-                        if (data.status === "ok") {
-                            var sections = [];
-                            data.result.map(function (section) {
-                                sections.push(section);
-                            });
-                            deferred.resolve(sections);
-                        } else {
-                            deferred.reject(data);
-                        }
-                    }, function (err) {
-                        deferred.reject(err);
-                    });
-
-                    return deferred.promise;
                 }
             }
         ])

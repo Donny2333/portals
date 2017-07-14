@@ -35,17 +35,18 @@
                                  is-open="status.open">
                                 <uib-accordion-heading>
                                     <div>
-                                        <img ng-src="{{vm.classificate.id===section.id?section.checked:section.img}}"
+                                        <img ng-src="{{vm.classificate.id == section.id ? section.checked : section.img}}"
                                              style="margin: -5px 5px">
-                                        <span class="field" ng-class="{active: vm.classificate.id===section.id}">{{section.field}}</span>
+                                        <span class="field" ng-class="{active: vm.classificate.id == section.id}">{{section.field}}</span>
                                         <i class="pull-right glyphicon icon-cursor" ng-class="{'glyphicon-menu-down': status.open, 'glyphicon-menu-right': !status.open,
-                                       'active': vm.classificate.id===section.id}"></i>
+                                       'active': vm.classificate.id==section.id}"></i>
                                     </div>
                                 </uib-accordion-heading>
                                 <ul class="category">
-                                    <li ng-class="{active: section.id===vm.classificate.id&&c===vm.classificate.classify}"
-                                        ng-click="classify(section.id, c)" ng-repeat="c in section.classify">
-                                        <a>{{c}}</a>
+                                    <li ng-repeat="c in section.classify | orderBy: sort"
+                                        ng-class="{active: vm.classificate.id == section.id && vm.classificate.classify == c.id}"
+                                        ng-click="classify(section.id, c.id)">
+                                        <a>{{c.name}}</a>
                                     </li>
                                 </ul>
                             </div>

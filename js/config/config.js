@@ -6,6 +6,7 @@
 
     var prodURL = 'http://172.30.1.246',
         devURL = 'http://192.168.250.44',
+        testURL = 'http://192.168.100.105',
         Urls = {
             Prod_Cfg: {
                 api: prodURL + ':9527/',
@@ -17,12 +18,18 @@
                 img: devURL + ':9528/',
                 temp: devURL + ':9528/RootData/TempData/',
                 theme: 'http://192.168.100.100:8080/'
+            },
+            Test_Cfg: {
+                api: testURL + ':9527/',
+                img: testURL + ':9528/',
+                temp: testURL + ':9528/RootData/TempData/',
+                theme: 'http://192.168.100.100:8080/'
             }
         };
 
     angular.module('portals.config', [])
 
-        .constant('URL_CFG', Urls.Dev_Cfg)
+        .constant('URL_CFG', Urls.Test_Cfg)
 
         .constant('APP_VERSION', {
             DEV: '1.0.0',
