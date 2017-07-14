@@ -31,7 +31,19 @@
             }
         })
 
-        .factory('Http', ["$q", "$http", function ($q, $http) {
+        .factory('Http', ["$q", "$http", "$sce", function ($q, $http, $sce) {
+            function parseParams(url, params) {
+                var p = [];
+                for (var key in params) {
+                    if (typeof params[key] === 'object') {
+                        p.push(key + '=' + JSON.stringify(params[key]));
+                    } else {
+                        p.push(key + '=' + params[key]);
+                    }
+                }
+                return [url, p.join('&')].join('?');
+            }
+
             return {
                 get: function (url) {
                     var deferred = $q.defer();
@@ -55,20 +67,21 @@
 
                     return deferred.promise;
                 },
-                fakePost: function (url, param) {
+                jsonp: function (url, params) {
                     var deferred = $q.defer();
-                    var _url;
-                    var _param = [];
+                    var _url = parseParams(url, params);
 
-                    for (var key in param) {
-                        if (typeof param[key] === 'object') {
-                            _param.push(key + '=' + JSON.stringify(param[key]));
-                        } else {
-                            _param.push(key + '=' + param[key]);
-                        }
-                    }
+                    $http.jsonp($sce.trustAsResourceUrl(_url)).then(function (res) {
+                        deferred.resolve(res);
+                    }, function (err) {
+                        deferred.reject(err);
+                    });
 
-                    _url = url + '?' + _param.join('&');
+                    return deferred.promise;
+                },
+                fakePost: function (url, params) {
+                    var deferred = $q.defer();
+                    var _url = parseParams(url, params);
 
                     $http.get(_url).then(function (res) {
                         deferred.resolve(res.data);
@@ -151,6 +164,22 @@
             return {
                 getQueryParam: function (param) {
                     return Http.fakePost(URL_CFG.api + 'MapService.svc/GetQueryParam', param);
+                }
+            }
+        }])
+
+        .factory('FullFeatures', ['$http', 'Http', function ($http, Http) {
+            return {
+                query: function (url, params) {
+                    var callback = $http.defaults.jsonpCallbackParam;
+                    $http.defaults.jsonpCallbackParam = 'jsoncallback';
+                    return Http.jsonp(url, params).then(function (res) {
+                        $http.defaults.jsonpCallbackParam = callback;
+                        return res;
+                    }, function (err) {
+                        $http.defaults.jsonpCallbackParam = callback;
+                        return err;
+                    })
                 }
             }
         }])

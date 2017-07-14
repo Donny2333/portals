@@ -198,13 +198,10 @@
                         })
                     });
 
-                    console.log(names($scope.checkboxs));
-                    console.log(values);
-
                     var param = {
                         extent: [vm.overlay.xmin, vm.overlay.ymin, vm.overlay.xmax, vm.overlay.ymax].join(','),
-                        width: $scope.size,
-                        height: $scope.size,
+                        width: vm.overlay.imgWidth,
+                        height: vm.overlay.imgHeight,
                         names: names($scope.checkboxs),
                         values: values,
                         type: 'image'
@@ -221,8 +218,6 @@
 
                     $scope.showImg = true;
                     $scope.imgUrl = url + '?' + _param.join('&');
-
-                    console.log(url + '?' + _param.join('&'));
                 };
             }
         ])

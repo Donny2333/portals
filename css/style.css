@@ -37,6 +37,11 @@ li {
     list-style: none;
 }
 
+textarea {
+    border: 1px solid #cccccc;
+    resize: none;
+}
+
 @media (min-width: 1200px) {
     .container {
         width: 1200px;
@@ -1556,43 +1561,67 @@ li {
 
 .query-panel > .main {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     flex: auto;
     overflow: hidden;
-    padding: 30px 40px;
 }
 
-.query-panel > .main > .table-responsive {
+.query-panel > .main .table-responsive {
     height: 250px;
     border: 1px solid #cccccc;
 }
 
-.query-panel > .main > .table-responsive > table {
+.query-panel > .main .table-responsive > table {
     margin: 0;
 }
 
-.query-panel > .main > .table-responsive tr th,
-.query-panel > .main > .table-responsive tr td {
+.query-panel > .main .table-responsive tr th,
+.query-panel > .main .table-responsive tr td {
     text-align: center;
     vertical-align: middle;
 }
 
-.query-panel > .main > .address {
+.query-panel > .main .address {
     display: flex;
     align-items: flex-start;
     width: 100%;
 }
 
-.query-panel > .main > .address textarea {
+.query-panel > .main .address textarea {
     flex: auto;
-    border: 1px solid #cccccc;
-    resize: none;
 }
 
-.query-panel > .main > .btns {
+.query-panel > .main .btns {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.query-panel > .main .step1,
+.query-panel > .main .step2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 30px 40px;
+    transition: transform .6s ease-in;
+}
+
+.query-panel > .main .step1.swipe,
+.query-panel > .main .step2.swipe {
+    transform: translate(-100%, 0);
+}
+
+.query-panel > .main .step2 {
+    margin-left: 100%;
+}
+
+.query-panel > .main .step2 > .json {
+    height: 330px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    overflow: auto;
 }

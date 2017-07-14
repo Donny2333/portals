@@ -121,20 +121,6 @@
                     console.log(err);
                 });
 
-                // $timeout(function () {
-                //     $rootScope.$broadcast('mask:show', {
-                //         showMask: true,
-                //         template: '<query-panel></query-panel>',
-                //         overlay: {
-                //             title: '地址组装',
-                //             data: {
-                //                 id: 80,
-                //                 mapServerPath: "http://111.47.18.22:8090/TotalFactorQueryWcfService/Query"
-                //             }
-                //         }
-                //     });
-                // }, 0);
-
 
                 reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
 
@@ -267,14 +253,13 @@
                                         ymin: vm.data.ymin,
                                         ymax: vm.data.ymax,
                                         imgHeight: 800,
-                                        imgWidth: 600
+                                        imgWidth: 800
                                     }
                                 });
                             }
                             break;
 
                         case '服务资源':
-                            console.log(vm.data);
                             $rootScope.$broadcast('mask:show', {
                                 showMask: true,
                                 template: '<query-panel></query-panel>',
