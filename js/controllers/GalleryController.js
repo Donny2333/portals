@@ -37,21 +37,26 @@
                         checked: '/images/图册_red.png',
                         field: "图册",
                         classify: []
-
                     }, {
                         id: 4,
+                        img: '/images/服务资源.png',
+                        checked: '/images/服务资源_red.png',
+                        field: "服务资源",
+                        classify: []
+                    }, {
+                        id: 5,
                         img: '/images/三维.png',
                         checked: '/images/三维_red.png',
                         field: "三维",
                         classify: []
                     }, {
-                        id: 5,
+                        id: 6,
                         img: '/images/要素.png',
                         checked: '/images/要素_red.png',
                         field: "要素",
                         classify: []
                     }, {
-                        id: 6,
+                        id: 7,
                         img: '/images/政务信息资源.png',
                         checked: '/images/政务信息资源_red.png',
                         field: "政务信息资源",
@@ -116,16 +121,19 @@
                     console.log(err);
                 });
 
-
-                $timeout(function () {
-                    $rootScope.$broadcast('mask:show', {
-                        showMask: true,
-                        template: '<theme-panel></theme-panel>',
-                        overlay: {
-                            title: '专题统计出图'
-                        }
-                    });
-                }, 0);
+                // $timeout(function () {
+                //     $rootScope.$broadcast('mask:show', {
+                //         showMask: true,
+                //         template: '<query-panel></query-panel>',
+                //         overlay: {
+                //             title: '地址组装',
+                //             data: {
+                //                 id: 80,
+                //                 mapServerPath: "http://111.47.18.22:8090/TotalFactorQueryWcfService/Query"
+                //             }
+                //         }
+                //     });
+                // }, 0);
 
 
                 reload(vm.pagination.pageNo - 1, vm.pagination.pageSize, "地图资源", "城管");
@@ -253,10 +261,28 @@
                                     showMask: true,
                                     template: '<theme-panel></theme-panel>',
                                     overlay: {
-                                        title: '专题统计出图'
+                                        title: '专题统计出图',
+                                        xmin: vm.data.xmin,
+                                        xmax: vm.data.xmax,
+                                        ymin: vm.data.ymin,
+                                        ymax: vm.data.ymax,
+                                        imgHeight: 800,
+                                        imgWidth: 600
                                     }
                                 });
                             }
+                            break;
+
+                        case '服务资源':
+                            console.log(vm.data);
+                            $rootScope.$broadcast('mask:show', {
+                                showMask: true,
+                                template: '<query-panel></query-panel>',
+                                overlay: {
+                                    title: vm.data.title,
+                                    data: vm.data
+                                }
+                            });
                             break;
 
                         default:
@@ -315,7 +341,11 @@
                                     tagName: gallery.TagName,
                                     brief: gallery.Detail,
                                     detail: gallery.Detail2,
-                                    mapServerPath: gallery.MapServerPath
+                                    mapServerPath: gallery.MapServerPath,
+                                    xmin: gallery.Xmin,
+                                    xmax: gallery.Xmax,
+                                    ymin: gallery.Ymin,
+                                    ymax: gallery.Ymax
                                 })
                             });
                             vm.expand = {

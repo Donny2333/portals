@@ -1,0 +1,35 @@
+<div class="query-panel">
+    <div class="top">
+        <div class="title">{{vm.overlay.title}}</div>
+    </div>
+    <div class="main">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th ng-repeat="th in vm.overlay.queryData.head">{{th}}</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="td in vm.overlay.queryData.body">
+                    <td ng-repeat="th in vm.overlay.queryData.head">{{td[th]}}</td>
+                    <td><input type="text"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="address">
+            <span>地址：</span>
+            <textarea cols="30" rows="3" ng-model="vm.overlay.queryUrl"></textarea>
+        </div>
+        <div class="btns">
+            <button class="btn btn-primary" ng-click="assemble()">地址组装</button>
+            <div>
+                <button class="btn btn-default">退出</button>
+                <button class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+    <i class="icon-close" ng-click="closeMask()"></i>
+</div>

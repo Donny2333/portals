@@ -54,6 +54,29 @@
                     });
 
                     return deferred.promise;
+                },
+                fakePost: function (url, param) {
+                    var deferred = $q.defer();
+                    var _url;
+                    var _param = [];
+
+                    for (var key in param) {
+                        if (typeof param[key] === 'object') {
+                            _param.push(key + '=' + JSON.stringify(param[key]));
+                        } else {
+                            _param.push(key + '=' + param[key]);
+                        }
+                    }
+
+                    _url = url + '?' + _param.join('&');
+
+                    $http.get(_url).then(function (res) {
+                        deferred.resolve(res.data);
+                    }, function (err) {
+                        deferred.reject(err);
+                    });
+
+                    return deferred.promise;
                 }
             }
         }])
@@ -107,80 +130,29 @@
             }
         }])
 
-        .directive('jsXls', ['$parse', function ($parse) {
+        .factory("HSymbolEngine", ["Http", 'URL_CFG', function (Http, URL_CFG) {
             return {
-                restrict: 'E',
-                template: '<input type="file" />',
-                replace: true,
-                link: function (scope, element, attrs) {
-
-                    function handleSelect() {
-                        var files = this.files;
-                        for (var i = 0, f = files[i]; i !== files.length; ++i) {
-                            var reader = new FileReader();
-                            var name = f.name;
-                            var data = null;
-                            reader.onload = function (e) {
-                                if (!e) {
-                                    data = reader.content;
-                                } else {
-                                    data = e.target.result;
-                                }
-
-                                /* if binary string, read with type 'binary' */
-                                try {
-                                    var workbook = XLS.read(data, {type: 'binary'});
-
-                                    scope.$apply(function () {
-                                        scope[attrs.name] = name;
-                                    });
-
-                                    if (attrs.onread) {
-                                        var handleRead = scope[attrs.onread];
-                                        if (typeof handleRead === "function") {
-                                            handleRead(workbook);
-                                        }
-                                    }
-                                } catch (e) {
-                                    if (attrs.onerror) {
-                                        var handleError = scope[attrs.onerror];
-                                        if (typeof handleError === "function") {
-                                            handleError(e);
-                                        }
-                                    }
-                                }
-
-                                // Clear input file
-                                element.val('');
-                            };
-
-                            //extend FileReader
-                            if (!FileReader.prototype.readAsBinaryString) {
-                                FileReader.prototype.readAsBinaryString = function (fileData) {
-                                    var binary = "";
-                                    var pt = this;
-                                    var reader = new FileReader();
-                                    reader.onload = function (e) {
-                                        var bytes = new Uint8Array(reader.result);
-                                        var length = bytes.byteLength;
-                                        for (var i = 0; i < length; i++) {
-                                            binary += String.fromCharCode(bytes[i]);
-                                        }
-                                        //pt.result  - readonly so assign binary
-                                        pt.content = binary;
-                                        $(pt).trigger('onload');
-                                    };
-                                    reader.readAsArrayBuffer(fileData);
-                                }
-                            }
-
-                            reader.readAsBinaryString(f);
-                        }
-                    }
-
-                    element.on('change', handleSelect);
+                themeInfos: function (param) {
+                    return Http.fakePost(URL_CFG.theme + 'HSymbolEngine/ThemeInfos', param);
+                },
+                singleChart: function (param) {
+                    return Http.fakePost(URL_CFG.theme + 'HSymbolEngine/SingleChart', param);
+                },
+                legend: function (param) {
+                    return Http.fakePost(URL_CFG.theme + 'HSymbolEngine/Legend', param);
+                },
+                chartLayer: function (param) {
+                    return Http.fakePost(URL_CFG.theme + 'HSymbolEngine/ChartLayer', param);
                 }
-            };
-        }]);
+            }
+        }])
+
+        .factory("Query", ["Http", 'URL_CFG', function (Http, URL_CFG) {
+            return {
+                getQueryParam: function (param) {
+                    return Http.fakePost(URL_CFG.api + 'MapService.svc/GetQueryParam', param);
+                }
+            }
+        }])
 
 })(angular);

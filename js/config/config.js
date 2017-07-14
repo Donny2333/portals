@@ -15,7 +15,8 @@
             Dev_Cfg: {
                 api: devURL + ':9527/',
                 img: devURL + ':9528/',
-                temp: devURL + ':9528/RootData/TempData/'
+                temp: devURL + ':9528/RootData/TempData/',
+                theme: 'http://192.168.100.100:8080/'
             }
         };
 

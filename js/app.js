@@ -5,6 +5,8 @@
     'use strict';
 
     angular.module('portals', [
+        'ngSanitize',
+        'ui.select',
         'ngAnimate',
         'ui.bootstrap',
         'portals.config',
