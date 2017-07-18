@@ -1046,6 +1046,22 @@ textarea {
 
 /******************************* geo-panel ******************************/
 
+.geo-bg {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.geo-bg > .geo-img {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
 .geo-panel {
     position: relative;
     display: -webkit-box;

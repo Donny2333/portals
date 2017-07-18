@@ -1,4 +1,4 @@
-<div>
+<div class="geo-bg">
     <div class="geo-panel" ng-if="!vm.overlay.showImg">
         <div class="top">
             <div class="title">{{vm.overlay.title}}</div>
@@ -51,7 +51,7 @@
         </div>
         <i class="icon-close" ng-click="closeMask()"></i>
     </div>
-    <div ng-if="vm.overlay.showImg">
+    <div class="geo-img" ng-if="vm.overlay.showImg">
         <img ng-src="{{vm.overlay.imgUrl}}">
         <i class="icon-close" ng-click="closeMask()"></i>
     </div>
