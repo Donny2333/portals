@@ -313,7 +313,7 @@
                                 pageNo: 0,
                                 pageNum: 10
                             }).then(function (res) {
-                                if (res.data.status === 'ok') {
+                                if (res.status === 'ok') {
                                     var anchor = angular.element('<a/>');
                                     anchor.attr({
                                         href: res.result.BaseUrl + res.result.FileName,
