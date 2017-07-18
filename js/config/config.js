@@ -11,19 +11,23 @@
             Prod_Cfg: {
                 api: prodURL + ':9527/',
                 img: prodURL + ':9528/',
-                temp: prodURL + ':9528/RootData/TempData/'
+                temp: prodURL + ':9528/RootData/TempData/',
+                theme: prodURL + ':8080/',
+                map: prodURL + ':4010/map/'
             },
             Dev_Cfg: {
                 api: devURL + ':9527/',
                 img: devURL + ':9528/',
                 temp: devURL + ':9528/RootData/TempData/',
-                theme: 'http://192.168.100.100:8080/'
+                theme: 'http://192.168.100.100:8080/',
+                map: 'http://192.168.99.64:5000/map/'
             },
             Test_Cfg: {
                 api: testURL + ':9527/',
                 img: testURL + ':9528/',
                 temp: testURL + ':9528/RootData/TempData/',
-                theme: 'http://192.168.100.100:8080/'
+                theme: 'http://192.168.100.100:8080/',
+                map: 'http://192.168.99.64:5000/map/'
             }
         };
 

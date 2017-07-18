@@ -290,7 +290,7 @@
                             break;
 
                         case 'mapshow':
-                            $window.open('http://172.30.1.246:4010/map/' + vm.data.id, '_blank');
+                            $window.open(URL_CFG.map + vm.data.id, '_blank');
                             break;
 
                         default:
@@ -299,28 +299,33 @@
                 };
 
                 $scope.download = function (singlePage) {
-                    if (vm.data.tagName === "图册") {
-                        var atlasIdLst = [];
-                        var pageNo = $('#flipbook').turn("page");
-                        if (singlePage && 1 < pageNo < (vm.atlas.total + 1) * 2) {
-                            atlasIdLst.push(Math.floor(pageNo / 2));
-                        }
+                    switch (vm.data.appType) {
+                        case 'altas_dlgq':
+                            var atlasIdLst = [];
+                            var pageNo = $('#flipbook').turn("page");
+                            if (singlePage && 1 < pageNo < (vm.atlas.total + 1) * 2) {
+                                atlasIdLst.push(Math.floor(pageNo / 2));
+                            }
 
-                        Gallery.download({
-                            AtlasIdLst: atlasIdLst,
-                            ImgSizeMode: 'Small',
-                            pageNo: 0,
-                            pageNum: 10
-                        }).then(function (res) {
-                            var anchor = angular.element('<a/>');
-                            anchor.attr({
-                                href: res.result.BaseUrl + res.result.FileName,
-                                target: '_blank',
-                                download: res.result.FileName
-                            })[0].click();
-                        })
-                    } else {
+                            Gallery.download({
+                                AtlasIdLst: atlasIdLst,
+                                ImgSizeMode: 'Small',
+                                pageNo: 0,
+                                pageNum: 10
+                            }).then(function (res) {
+                                if (res.data.status === 'ok') {
+                                    var anchor = angular.element('<a/>');
+                                    anchor.attr({
+                                        href: res.result.BaseUrl + res.result.FileName,
+                                        target: '_blank',
+                                        download: res.result.FileName
+                                    })[0].click();
+                                }
+                            });
+                            break;
 
+                        default:
+                            break;
                     }
                 };
 
