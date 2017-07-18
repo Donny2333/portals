@@ -19,13 +19,16 @@
                         checked: 1,
                         data: [{
                             name: '柱状图',
-                            value: 1
+                            value: 1,
+                            disabled: false
                         }, {
                             name: '饼状图',
-                            value: 2
+                            value: 2,
+                            disabled: false
                         }, {
                             name: '堆叠图',
-                            value: 3
+                            value: 3,
+                            disabled: false
                         }]
                     },
                     checkboxs: [{
@@ -40,6 +43,12 @@
                     }],
                     showCheckboxs: false
                 };
+
+                vm.overlay.radioDisabled && vm.overlay.geography.radios.data.map(function (o) {
+                    if (o.name !== '柱状图') {
+                        o.disabled = true;
+                    }
+                });
 
                 if (vm.overlay.data.title === '城市综合能力') {
                     vm.overlay.geography.showCheckboxs = true;
@@ -92,6 +101,10 @@
                     };
                     var mapName = compose(filter, map, join);
 
+                    var loading = layer.load(1, {
+                        shade: [0.1, '#000']
+                    });
+
                     Calculate.getThemeImagePoint({
                         title: geography.title,
                         creator: geography.creator,
@@ -102,11 +115,16 @@
                         thematictype: geography.radios.checked
                     }).then(function (data) {
                         if (data.status === "ok") {
+                            layer.closeAll('loading');
                             deferred.resolve(data.result);
                         } else {
+                            layer.closeAll('loading');
+                            layer.msg('统计出图失败', {icon: 2});
                             deferred.reject(data);
                         }
                     }, function (err) {
+                        layer.closeAll('loading');
+                        layer.msg('统计出图失败', {icon: 2});
                         deferred.reject(err);
                     });
 
@@ -115,6 +133,9 @@
 
                 function getThemeImageLine(geography) {
                     var deferred = $q.defer();
+                    var loading = layer.load(1, {
+                        shade: [0.1, '#000']
+                    });
 
                     Calculate.getThemeImageLine({
                         title: geography.title,
@@ -126,11 +147,16 @@
                         thematictype: geography.radios.checked
                     }).then(function (data) {
                         if (data.status === "ok") {
+                            layer.closeAll('loading');
                             deferred.resolve(data.result);
                         } else {
+                            layer.closeAll('loading');
+                            layer.msg('统计出图失败', {icon: 2});
                             deferred.reject(data);
                         }
                     }, function (err) {
+                        layer.closeAll('loading');
+                        layer.msg('统计出图失败', {icon: 2});
                         deferred.reject(err);
                     });
 
@@ -139,6 +165,9 @@
 
                 function getThemeImageArea(geography) {
                     var deferred = $q.defer();
+                    var loading = layer.load(1, {
+                        shade: [0.1, '#000']
+                    });
 
                     Calculate.getThemeImageArea({
                         title: geography.title,
@@ -150,11 +179,16 @@
                         thematictype: geography.radios.checked
                     }).then(function (data) {
                         if (data.status === "ok") {
+                            layer.closeAll('loading');
                             deferred.resolve(data.result);
                         } else {
+                            layer.closeAll('loading');
+                            layer.msg('统计出图失败', {icon: 2});
                             deferred.reject(data);
                         }
                     }, function (err) {
+                        layer.closeAll('loading');
+                        layer.msg('统计出图失败', {icon: 2});
                         deferred.reject(err);
                     });
 

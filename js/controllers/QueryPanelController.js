@@ -52,7 +52,7 @@
                             if (res.data.status === 'ok') {
                                 vm.overlay.json = JSON.stringify(res.data.result, undefined, 4);
                             } else {
-                                vm.overlay.json = JSON.stringify(res.data, undefined, 4);
+                                vm.overlay.json = JSON.stringify(res, undefined, 4);
                             }
                             vm.overlay.swipe = true;
                         }, function (err) {
@@ -72,7 +72,7 @@
                     vm.overlay.queryData.body = [];
                     data.result.map(function (o) {
                         vm.overlay.queryData.body.push(angular.extend(o, {
-                            Value: null
+                            Value: o.DefaultVal
                         }))
                     });
 

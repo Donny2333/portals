@@ -12,6 +12,10 @@ label {
     font-weight: normal;
 }
 
+label.disable {
+    color: #ccc;
+}
+
 a,
 button {
     cursor: pointer;
@@ -824,6 +828,13 @@ textarea {
     color: #616161;
 }
 
+.map > .head > .method {
+    min-width: 300px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .map > .head > .method > button {
     margin-top: 36px;
     display: inline-block;
@@ -1128,10 +1139,6 @@ textarea {
     margin-right: 5px;
 }
 
-.radio-item > label {
-    font-weight: normal;
-}
-
 .right > .list {
     display: flex;
     flex-direction: column;
@@ -1160,10 +1167,6 @@ textarea {
 
 .right > .checkbox-list > .checkbox-item > input {
     margin-right: 5px;
-}
-
-.right > .checkbox-list > .checkbox-item > label {
-    font-weight: normal;
 }
 
 .right > .btns {

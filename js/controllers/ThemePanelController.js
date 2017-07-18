@@ -25,11 +25,11 @@
                     selected: null,
                     data: []
                 };
-                $scope.size = 120;
-                $scope.alpha = 100;
-                $scope.depth = 0;
-                $scope.ratioCircle = 100;
-                $scope.ratioRing = 0;
+                vm.overlay.size = 120;
+                vm.overlay.alpha = 100;
+                vm.overlay.depth = 0;
+                vm.overlay.ratioCircle = 100;
+                vm.overlay.ratioRing = 0;
 
                 $scope.renderImg = function (value) {
                     value = value || {};
@@ -38,14 +38,14 @@
                         values: '1,2,3,4,5',
                         chartid: value.symbolCode || $scope.symbolTypes.selected.code,
                         colorid: value.colorCode || $scope.colorTypes.selected.code,
-                        alpha: $scope.alpha / 100,
-                        cwidth: $scope.size,
-                        cheight: $scope.size,
+                        cwidth: vm.overlay.size,
+                        cheight: vm.overlay.size,
+                        alpha: vm.overlay.alpha / 100,
                         type: 'json',
                         csetting: {
-                            depth: $scope.depth,
-                            ratioCircle: $scope.ratioCircle / 100,
-                            ratioRing: $scope.ratioRing / 100
+                            depth: vm.overlay.depth,
+                            ratioCircle: vm.overlay.ratioCircle / 100,
+                            ratioRing: vm.overlay.ratioRing / 100
                         }
                     }).then(function (res) {
                         if (res.status === 'ok') {
@@ -107,6 +107,17 @@
                     console.log(e);
                 };
 
+                $scope.getTemplate = function () {
+                    var fileName = vm.overlay.mxdPath.split(/\\(?![^\\]*\\)/)[1];
+
+                    var anchor = angular.element('<a/>');
+                    anchor.attr({
+                        href: URL_CFG.img + vm.overlay.mxdPath,
+                        target: '_blank',
+                        download: fileName
+                    })[0].click();
+                };
+
                 $scope.next = function (step) {
                     switch (step) {
                         case 0:
@@ -120,9 +131,9 @@
                                         values: '1,2,3,4,5',
                                         chartid: $scope.symbolTypes.selected.code,
                                         colorid: $scope.colorTypes.selected.code,
-                                        alpha: $scope.alpha / 100,
-                                        cwidth: $scope.size,
-                                        cheight: $scope.size,
+                                        alpha: vm.overlay.alpha / 100,
+                                        cwidth: vm.overlay.size,
+                                        cheight: vm.overlay.size,
                                         type: 'json',
                                         csetting: {
                                             depth: 2,
@@ -199,12 +210,19 @@
                     });
 
                     var param = {
+                        chartid: $scope.symbolTypes.selected.code,
+                        colorid: $scope.colorTypes.selected.code,
                         extent: [vm.overlay.xmin, vm.overlay.ymin, vm.overlay.xmax, vm.overlay.ymax].join(','),
                         width: vm.overlay.imgWidth,
                         height: vm.overlay.imgHeight,
                         names: names($scope.checkboxs),
                         values: values,
-                        type: 'image'
+                        type: 'image',
+                        csetting: {
+                            depth: vm.overlay.depth,
+                            ratioCircle: vm.overlay.ratioCircle / 100,
+                            ratioRing: vm.overlay.ratioRing / 100
+                        }
                     };
 
                     var _param = [];

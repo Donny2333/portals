@@ -223,8 +223,25 @@
                             $window.open(vm.data.mapServerPath, '_blank');
                             break;
 
-                        case 'cal_points':
                         case 'cal_area':
+                            Calculate.getDlgqParam({
+                                MapId: vm.data.id
+                            }).then(function (res) {
+                                $rootScope.$broadcast('mask:show', {
+                                    showMask: true,
+                                    template: '<geo-panel></geo-panel>',
+                                    overlay: {
+                                        title: '地理国情统计出图',
+                                        list: res.result,
+                                        data: vm.data,
+                                        select: res.result[0],
+                                        radioDisabled: true
+                                    }
+                                });
+                            });
+                            break;
+
+                        case 'cal_points':
                         case 'cal_road':
                         case 'cal_water':
                             Calculate.getDlgqParam({
@@ -253,6 +270,7 @@
                                     xmax: vm.data.xmax,
                                     ymin: vm.data.ymin,
                                     ymax: vm.data.ymax,
+                                    mxdPath: vm.data.mxdPath,
                                     imgHeight: 800,
                                     imgWidth: 800
                                 }
@@ -320,9 +338,9 @@
                                     version: "1.0.0",
                                     img: URL_CFG.img + _.replace(gallery.PicPath, '{$}', 'big'),
                                     // img: "http://192.168.99.105:9528/RootData/public/MapDoc/Images/big/安全设施分布图.png",
-                                    tagName: gallery.TagName,
                                     brief: gallery.Detail,
                                     detail: gallery.Detail2,
+                                    mxdPath: gallery.MxdPath,
                                     mapServerPath: gallery.MapServerPath,
                                     xmin: gallery.Xmin,
                                     xmax: gallery.Xmax,

@@ -19,7 +19,7 @@
                                 <js-xls name="xlsName" onread="read" onerror="error"></js-xls>
                             </a>
                         </div>
-                        <a class="get-template">获取模版</a>
+                        <a class="get-template" ng-click="getTemplate()">获取模版</a>
                     </div>
                     <div class="file-table table-responsive">
                         <table class="table table-hover">
@@ -55,7 +55,7 @@
                                 <input type="tel" class="range-bottom" ng-model="vm.overlay.ymin">
                                 <input type="tel" class="range-left" ng-model="vm.overlay.xmin">
                             </div>
-                            <button class="btn btn-success">设置</button>
+                            <!--<button class="btn btn-success">设置</button>-->
                         </div>
                         <div class="img">
                             <span class="img-title">2、请确定图片大小：</span>
@@ -128,34 +128,33 @@
                         <ul class="value-list">
                             <li class="value-item">
                                 <span>大小</span>
-                                <input type="range" ng-model="size" min="10" max="200"
-                                       ng-model-options="{debounce: 300}"
-                                       ng-change="renderImg()">
-                                <span>{{size}}</span>
+                                <input type="range" ng-model="vm.overlay.size" min="10" max="200"
+                                       ng-change="renderImg()" ng-model-options="{debounce: 300}">
+                                <span>{{vm.overlay.size}}</span>
                             </li>
                             <li class="value-item">
                                 <span>透明度</span>
-                                <input type="range" ng-model="alpha" ng-model-options="{debounce: 300}"
-                                       ng-change="renderImg()">
-                                <span>{{alpha/100}}</span>
+                                <input type="range" ng-model="vm.overlay.alpha" ng-change="renderImg()"
+                                       ng-model-options="{debounce: 300}">
+                                <span>{{vm.overlay.alpha/100}}</span>
                             </li>
                             <li class="value-item">
                                 <span>厚度</span>
-                                <input type="range" ng-model="depth" max="40" ng-model-options="{debounce: 300}"
-                                       ng-change="renderImg()">
-                                <span>{{depth}}</span>
+                                <input type="range" ng-model="vm.overlay.depth" max="40" ng-change="renderImg()"
+                                       ng-model-options="{debounce: 300}">
+                                <span>{{vm.overlay.depth}}</span>
                             </li>
                             <li class="value-item">
                                 <span>圆率</span>
-                                <input type="range" ng-model="ratioCircle" ng-model-options="{debounce: 300}"
-                                       ng-change="renderImg()">
-                                <span>{{ratioCircle/100}}</span>
+                                <input type="range" ng-model="vm.overlay.ratioCircle" ng-change="renderImg()"
+                                       ng-model-options="{debounce: 300}">
+                                <span>{{vm.overlay.ratioCircle/100}}</span>
                             </li>
                             <li class="value-item">
                                 <span>环率</span>
-                                <input type="range" ng-model="ratioRing" max="90" ng-model-options="{debounce: 300}"
-                                       ng-change="renderImg()">
-                                <span>{{ratioRing/100}}</span>
+                                <input type="range" ng-model="vm.overlay.ratioRing" max="90" ng-change="renderImg()"
+                                       ng-model-options="{debounce: 300}">
+                                <span>{{vm.overlay.ratioRing/100}}</span>
                             </li>
                         </ul>
                         <div class="btn-next">
