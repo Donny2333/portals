@@ -33,7 +33,7 @@
 
     angular.module('portals.config', [])
 
-        .constant('URL_CFG', Urls.Dev_Cfg)
+        .constant('URL_CFG', Urls.Test_Cfg)
 
         .constant('APP_VERSION', {
             DEV: '1.0.0',

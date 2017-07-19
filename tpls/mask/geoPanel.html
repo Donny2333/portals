@@ -16,7 +16,8 @@
                     <li class="radio-item" ng-repeat="radio in vm.overlay.geography.radios.data">
                         <input type="radio" id="{{'radio-' + radio.id}}" name="selector" ng-value="radio.value"
                                ng-model="vm.overlay.geography.radios.checked" ng-disabled="radio.disabled">
-                        <label for="{{'radio-' + radio.id}}" ng-class="{disable: radio.disabled}">{{radio.name}}</label>
+                        <label for="{{'radio-' + radio.id}}"
+                               ng-class="{disable: radio.disabled}">{{radio.name}}</label>
                     </li>
                 </ul>
                 <ul class="list">

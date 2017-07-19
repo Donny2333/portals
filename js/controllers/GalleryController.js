@@ -234,8 +234,7 @@
                                         title: '地理国情统计出图',
                                         list: res.result,
                                         data: vm.data,
-                                        select: res.result[0],
-                                        radioDisabled: true
+                                        select: res.result[0]
                                     }
                                 });
                             });
@@ -254,7 +253,8 @@
                                         title: '地理国情统计出图',
                                         list: res.result,
                                         data: vm.data,
-                                        select: res.result[0]
+                                        select: res.result[0],
+                                        radioDisabled: true
                                     }
                                 });
                             });
