@@ -314,12 +314,19 @@
                                 pageNum: 10
                             }).then(function (res) {
                                 if (res.status === 'ok') {
-                                    var anchor = angular.element('<a/>');
-                                    anchor.attr({
-                                        href: res.result.BaseUrl + res.result.FileName,
-                                        target: '_blank',
-                                        download: res.result.FileName
-                                    })[0].click();
+                                    var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+                                    if (isChrome) {
+                                        var anchor = angular.element('<a/>');
+                                        anchor.attr({
+                                            href: res.result.BaseUrl + res.result.FileName,
+                                            target: '_blank',
+                                            download: res.result.FileName
+                                        })[0].click();
+                                    } else {
+                                        window.open(res.result.BaseUrl + res.result.FileName);
+
+                                    }
                                 }
                             });
                             break;

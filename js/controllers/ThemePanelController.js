@@ -30,6 +30,9 @@
                 vm.overlay.depth = 0;
                 vm.overlay.ratioCircle = 100;
                 vm.overlay.ratioRing = 0;
+                vm.overlay.href = URL_CFG.img + vm.overlay.mxdPath;
+                vm.overlay.download = vm.overlay.mxdPath.split(/\\(?![^\\]*\\)/)[1];
+
 
                 $scope.renderImg = function (value) {
                     value = value || {};
