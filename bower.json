@@ -17,6 +17,7 @@
     "angular-ui-select": "^0.19.8",
     "select2": "^3.4.5",
     "angular-sanitize": "^1.6.5",
-    "layer": "^3.0.3"
+    "layer": "^3.0.3",
+    "ol4": "^4.0.1"
   }
 }

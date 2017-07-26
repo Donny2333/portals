@@ -354,10 +354,11 @@
                                     detail: gallery.Detail2,
                                     mxdPath: gallery.MxdPath,
                                     mapServerPath: gallery.MapServerPath,
-                                    xmin: gallery.Xmin,
-                                    xmax: gallery.Xmax,
-                                    ymin: gallery.Ymin,
-                                    ymax: gallery.Ymax
+                                    srcID: gallery.SrcID,
+                                    xmin: parseFloat(gallery.Xmin),
+                                    xmax: parseFloat(gallery.Xmax),
+                                    ymin: parseFloat(gallery.Ymin),
+                                    ymax: parseFloat(gallery.Ymax)
                                 })
                             });
                             vm.expand = {

@@ -1777,7 +1777,8 @@ textarea {
 }
 
 .query-panel > .main .step1,
-.query-panel > .main .step2 {
+.query-panel > .main .step2,
+.query-panel > .main .step3 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1800,17 +1801,31 @@ textarea {
     transition: transform .6s ease-in, -webkit-transform .6s ease-in;
 }
 
-.query-panel > .main .step1.swipe,
-.query-panel > .main .step2.swipe {
+.query-panel > .main .step1.swipe1,
+.query-panel > .main .step2.swipe1,
+.query-panel > .main .step3.swipe1 {
     -webkit-transform: translate(-100%, 0);
     transform: translate(-100%, 0);
+}
+
+.query-panel > .main .step1.swipe2,
+.query-panel > .main .step2.swipe2,
+.query-panel > .main .step3.swipe2 {
+    -webkit-transform: translate(-200%, 0);
+    transform: translate(-200%, 0);
 }
 
 .query-panel > .main .step2 {
     margin-left: 100%;
 }
 
-.query-panel > .main .step2 > .json {
+.query-panel > .main .step3 {
+    margin-left: 200%;
+}
+
+.query-panel > .main .step2 > .json,
+.query-panel > .main .step3 > #map {
+    position: relative;
     height: 330px;
     width: 100%;
     border: 1px solid #cccccc;

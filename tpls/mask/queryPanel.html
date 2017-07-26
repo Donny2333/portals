@@ -3,7 +3,7 @@
         <div class="title">{{vm.overlay.title}}</div>
     </div>
     <div class="main">
-        <div class="step1" ng-class="{swipe: vm.overlay.swipe}">
+        <div class="step1" ng-class="{swipe1: vm.overlay.swipe===1, swipe2: vm.overlay.swipe===2}">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -26,18 +26,22 @@
             </div>
             <div class="btns">
                 <button class="btn btn-primary" ng-click="assemble()">地址组装</button>
-                <div>
-                    <button class="btn btn-default" ng-click="closeMask()">退出</button>
-                    <button class="btn btn-primary" ng-click="commit()">确定</button>
-                </div>
+                <button class="btn btn-primary" ng-click="commit()">确定</button>
             </div>
         </div>
-        <div class="step2" ng-class="{swipe: vm.overlay.swipe}">
+        <div class="step2" ng-class="{swipe1: vm.overlay.swipe===1, swipe2: vm.overlay.swipe===2}">
             <!--<div id="jsonDiv" class="json-div"></div>-->
             <pre class="json">{{vm.overlay.json}}</pre>
             <!--<textarea cols="30" rows="16" ng-model="vm.overlay.json"></textarea>-->
             <div class="btns">
-                <button class="btn btn-default" ng-click="backward()">返回</button>
+                <button class="btn btn-default" ng-click="vm.overlay.swipe=0">返回</button>
+                <button class="btn btn-primary" ng-click="showMap()">查看</button>
+            </div>
+        </div>
+        <div class="step3" ng-class="{swipe1: vm.overlay.swipe===1, swipe2: vm.overlay.swipe===2}">
+            <div id="map"></div>
+            <div class="btns">
+                <button class="btn btn-default" ng-click="vm.overlay.swipe=1">返回</button>
                 <button class="btn btn-primary" ng-click="closeMask()">退出</button>
             </div>
         </div>
